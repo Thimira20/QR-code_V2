@@ -1,0 +1,312 @@
+.stepBox {
+  background-color: rgba(67, 0, 97, 255);
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+}
+
+.stepBoxTop {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepTopic {
+  color: #000;
+  text-align: center;
+  text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
+  -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-color: #000;
+  font-family: Kanit;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+  padding: 10px;
+  transition: background-color 0.5s, color 0.5s, border-radius 0.5s,
+    box-shadow 0.5s;
+}
+
+.stepTopic:hover {
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  border-radius: 15px;
+  background-color: white;
+  color: rgba(67, 0, 97, 255);
+}
+
+.stepBoxBottom {
+  flex: 6;
+  display: flex;
+  margin: 30px auto;
+}
+
+.bottomLeft {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bottomRight {
+  flex: 2;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: auto 20px;
+}
+
+.rightImage {
+  display: flex;
+  height: 400px;
+  margin: auto;
+  border-radius: 8px;
+}
+
+.imageBox {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  margin: 20px auto;
+  background-color: rgb(62, 39, 39);
+  border-radius: 8px;
+}
+
+.stepsList {
+  display: flex;
+  list-style: none;
+  margin: 0 50px 50px 50px;
+  padding: 10px 10px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+    rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+    rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  transition: background-color 0.5s, color 0.5s, border-radius 0.5s,
+    box-shadow 0.5s;
+}
+
+.stepsList:hover {
+  background-color: rgb(183, 55, 229);
+  color: rgba(67, 0, 97, 255);
+  border-radius: 8px;
+}
+
+.stepText {
+  flex: 5;
+  color: #fff;
+  font-family: Kanit;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  display: flex;
+  justify-content: center;
+  transition: background-color 0.5s, color 0.5s, border-radius 0.5s,
+    box-shadow 0.5s;
+}
+
+.stepText:hover {
+  background-color: white;
+  color: rgba(67, 0, 97, 255);
+  border-radius: 15px;
+}
+
+.stepButton {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border-width: 0;
+  transition: background-color 0.5s, color 0.5s, box-shadow 0.5s;
+}
+
+.stepButton:hover {
+  background-color: white;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.stepIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 900px) {
+  .stepText {
+    font-size: 25px;
+    line-height: 40px;
+  }
+  .rightImage {
+    height: 300px;
+  }
+  .imageBox {
+    margin-bottom: 35px;
+  }
+  .stepsList {
+    padding: 8px;
+  }
+  .stepText:hover {
+    border-radius: 12px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .stepBoxBottom {
+    flex-direction: column;
+  }
+  .rightImage {
+    height: 250px;
+  }
+  .imageBox {
+    margin-bottom: 35px;
+  }
+  .stepText {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .stepTopic {
+    font-size: 35px;
+    line-height: 40px;
+  }
+  .stepsList {
+    padding: 6px;
+  }
+  .stepText:hover {
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .rightImage {
+    height: 175px;
+  }
+  .imageBox {
+    margin-bottom: 25px;
+  }
+  .stepText {
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .stepTopic {
+    font-size: 30px;
+    line-height: 35px;
+  }
+  .stepsList {
+    padding: 4px;
+  }
+  .stepText:hover {
+    border-radius: 5px;
+  }
+  .imgAnimation {
+    border: 3px;
+  }
+  .stepBox {
+    padding-right: 0;
+  }
+  .stepBoxTop {
+    padding: 15px;
+  }
+}
+
+/*-----ANIMATION----*/
+
+.imgAnimation {
+  position: relative;
+  margin: auto;
+  width: auto;
+  line-height: auto;
+  text-align: center;
+  font-size: 24px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 5px solid rgb(0, 201, 231);
+    transition: all 0.5s;
+    border-radius: 8px;
+    animation: clippath 5s infinite linear;
+  }
+}
+
+@keyframes clippath {
+  0%,
+  100% {
+    clip-path: inset(0 0 95% 0);
+  }
+  25% {
+    border-color: rgb(3, 3, 153);
+    clip-path: inset(0 95% 0 0);
+  }
+  50% {
+    border-color: rgb(144, 16, 242);
+    clip-path: inset(95% 0 0 0);
+  }
+  75% {
+    border-color: rgb(224, 9, 244);
+    clip-path: inset(0 0 0 95%);
+  }
+}
+
+.bg::before {
+  background: rgba(255, 215, 0, 0.5);
+}
+
+/* HTML: <div class="loader"></div> */
+
+.stepLoder {
+  width: 65px;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.stepLoder:before,
+.stepLoder:after {
+  content: "";
+  position: absolute;
+  border-radius: 50px;
+  box-shadow: 0 0 0 3px inset #161616;
+  animation: l7 2.5s infinite;
+}
+
+.stepLoder:after {
+  animation-delay: -1.25s;
+  border-radius: 0;
+}
+
+@keyframes l7 {
+  0% {
+    inset: 0 35px 35px 0;
+  }
+  12.5% {
+    inset: 0 35px 0 0;
+  }
+  25% {
+    inset: 35px 35px 0 0;
+  }
+  37.5% {
+    inset: 35px 0 0 0;
+  }
+  50% {
+    inset: 35px 0 0 35px;
+  }
+  62.5% {
+    inset: 0 0 0 35px;
+  }
+  75% {
+    inset: 0 0 35px 35px;
+  }
+  87.5% {
+    inset: 0 0 35px 0;
+  }
+  100% {
+    inset: 0 35px 35px 0;
+  }
+}

@@ -1,0 +1,375 @@
+.genaratorBox {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: max-content;
+    min-height: 700;
+}
+
+.genaratorBoxTop {
+    flex: 0.5;
+    background-color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.genTopic {
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #000;
+    font-family: Kanit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.genaratorBoxUp {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+
+.spacingBox {
+    flex: 1;
+    background-color: rgb(83, 79, 186);
+}
+
+.urlSizeBox {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    margin: 20px 10px;
+    background-color: rgba(8, 11, 106, 0.5);
+    border-radius: 9px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.inputBox {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+    margin: 20px 20px;
+}
+
+.sizeBox {
+    flex: 1;
+    margin: 20px 10px;
+}
+
+.selected {
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 10px;
+    border: none;
+    transition: box-shadow 0.5s;
+    text-decoration: antiquewhite;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.selected:focus {
+    outline: none;
+}
+
+.selected:hover {
+    box-shadow: rgb(1, 1, 1) 0px 20px 30px -10px;
+}
+
+.buttonBox {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.qrIcon {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+}
+
+.qrInput {
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    padding-left: 20px;
+    border: none;
+    padding-right: 10px;
+    transition: box-shadow 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.qrInput:hover {
+    box-shadow: rgb(1, 1, 1) 0px 20px 30px -10px;
+}
+
+.qrInput:focus {
+    outline: none;
+}
+
+.genButton {
+    display: flex;
+    padding: 7px 20px 7px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: background-color 0.5s, color 0.5s, font-weght 0.5s, box-shadow 0.5s;
+}
+
+.genButton:hover {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    font-weight: bold;
+    background-color: white;
+    color: rgba(67, 0, 97, 255);
+}
+
+.saveButton {
+    display: flex;
+    padding: 7px 20px 7px 20px;
+    margin: 0 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: background-color 0.5s, color 0.5s, font-weght 0.5s, box-shadow 0.5s;
+}
+
+.saveButton:hover {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    font-weight: bold;
+    background-color: white;
+    color: rgba(67, 0, 97, 255);
+}
+
+.genrating {
+    display: flex;
+    padding: 7px 20px 7px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /* transition: background-color 0.3s ease; */
+    animation: example 2.2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes example {
+    from {
+        background-color: rgb(255, 255, 255);
+    }
+    to {
+        background-color: rgb(9, 230, 68);
+    }
+}
+
+.genButton.clicked {
+    background-color: rgb(19, 227, 19);
+    /* New background color when clicked */
+}
+
+.genaratorBoxDown {
+    flex: 6;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 200px;
+}
+
+
+/* .qrBox {
+  border-width: 3px;
+  border-radius: 10px;
+  border-color: black;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} */
+
+.qrImage {
+    /* display: flex;
+  height: 200px; */
+    margin: auto;
+    max-width: 1200px;
+    width: max-content;
+}
+
+.genaratorBoxBottom {
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+}
+
+.delButton {
+    display: flex;
+    padding: 7px 20px 7px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    border-width: 5px;
+    border-color: greenyellow;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: background-color 0.5s, color 0.5s, font-weght 0.5s, box-shadow 0.5s;
+}
+
+.delButton:hover {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    font-weight: bold;
+    background-color: rgb(189, 245, 197);
+    color: rgba(67, 0, 97, 255);
+}
+
+
+/* HTML: <div class="loader"></div> */
+
+.loader0 {
+    width: 70px;
+    aspect-ratio: 1;
+    background: radial-gradient(farthest-side, #000 90%, #0000) 0 0/8px 8px no-repeat, conic-gradient(from -90deg at 30px 30px, #0000 90deg, #7c7c7c 0) 0 0/40px 40px, conic-gradient(from 90deg at 10px 10px, #0000 90deg, #5c5c5c 0) 0 0/40px 40px no-repeat, conic-gradient(from -90deg at 30px 30px, #0000 90deg, #767577 0) 100% 100%/40px 40px no-repeat;
+    animation: l5 2s infinite;
+}
+
+@keyframes l5 {
+    0% {
+        background-position: left 1px top 1px, 0 0, 0 0, 100% 100%;
+    }
+    16.67% {
+        background-position: left 50% top 1px, 0 0, 0 0, 100% 100%;
+    }
+    33.33% {
+        background-position: left 50% bottom 1px, 0 0, 0 0, 100% 100%;
+    }
+    50% {
+        background-position: right 1px bottom 1px, 0 0, 0 0, 100% 100%;
+    }
+    66.67% {
+        background-position: right 1px bottom 50%, 0 0, 0 0, 100% 100%;
+    }
+    83.33% {
+        background-position: left 1px bottom 50%, 0 0, 0 0, 100% 100%;
+    }
+    100% {
+        background-position: left 1px top 1px, 0 0, 0 0, 100% 100%;
+    }
+}
+
+
+/* HTML: <div class="loader"></div> */
+
+.loader {
+    width: 60px;
+    aspect-ratio: 1;
+    --g: conic-gradient(from -90deg at 10px 10px, #0f0e0e 90deg, #0000 0);
+    background: var(--g), var(--g), var(--g);
+    background-size: 50% 50%;
+    animation: l17 1.5s infinite;
+}
+
+@keyframes l17 {
+    0% {
+        background-position: 0 0, 10px 10px, 20px 20px;
+    }
+    33% {
+        background-position: -30px 0, 10px 10px, 20px 20px;
+    }
+    66% {
+        background-position: -30px 0, -20px 10px, 20px 20px;
+    }
+    100% {
+        background-position: -30px 0, -20px 10px, -10px 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .genaratorBoxUp {
+        flex-direction: column;
+        margin: auto;
+    }
+    .buttonBox {
+        margin-top: 30px;
+    }
+    .inputBox {
+        margin: 20px 40px auto 40px;
+        justify-items: left;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .genTopic {
+        font-size: 35px;
+        line-height: 40px;
+    }
+    .closeButton:hover {
+        background-color: rgb(244, 41, 41, 2);
+        color: white;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .genTopic {
+        font-size: 30px;
+        line-height: 35px;
+    }
+    .urlSizeBox {
+        margin: 20px 0;
+        padding-left: 4px;
+    }
+    .colorButton {
+        width: 10px;
+        height: 10px;
+    }
+    .colorBox {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+}
+
+
+/* Color selector*/
+
+.colorBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    margin: 10px 0 10px 0;
+    width: 97%;
+    background-color: rgb(137, 131, 131, 0.4);
+    padding: 8px 4px;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.colorButton {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.colorButton:focus {
+    outline: 3px solid #faf9f9;
+    outline-offset: 3px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+/* CSS */
+
+
+/* CSS */

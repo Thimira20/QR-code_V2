@@ -1,0 +1,99 @@
+.profileBox {
+    display: flex;
+    flex-direction: column;
+    max-height: max-content;
+    min-height: 700;
+    width: 100%;
+    left: 0;
+}
+
+.top {
+    background-color: rgb(155, 30, 208, 0.3);
+    flex: 1;
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #000;
+    font-family: Kanit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.genTopic {
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #000;
+    font-family: Kanit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.bottom {
+    flex: 6;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/*=======Left=======*/
+
+.left {
+    background-color: aquamarine;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.leftTop {
+    flex: 2;
+    background-color: aquamarine;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.savedImage {
+    height: 200px;
+    width: 200px;
+    display: flex;
+}
+
+.leftBottom {
+    flex: 1;
+    background-color: blueviolet;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.qrName {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(75, 110, 215);
+    color: white;
+    font-family: "Kanit";
+    font-size: 15px;
+    padding: 5px 10px;
+}
+
+.savedImage {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*=======Right=======*/
+
+.right {
+    background-color: rgb(75, 110, 215);
+    flex: 1;
+}

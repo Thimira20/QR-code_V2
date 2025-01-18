@@ -1,0 +1,140 @@
+.homeBox {
+  background-color: rgba(67, 0, 97, 255);
+  display: flex;
+  height: 768px;
+}
+
+.homeBoxLeft {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeBoxRight {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftBoxContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rightBoxContainer {
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+
+.homeQr {
+  height: 200px;
+  -webkit-animation: spin 30s linear infinite;
+  -moz-animation: spin 30s linear infinite;
+  animation: spin 30s linear infinite;
+  background-color: whitesmoke;
+  box-shadow: rgba(19, 18, 18, 0.541) 0px 25px 50px -12px;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.text {
+  text-align: center;
+  text-shadow: 0px 15px 40px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  font-family: Kanit;
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110px;
+  margin: 0 0;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073,
+      0 0 20px #0c00e6, 0 0 20px #4d00e6, 0 0 20px #0c00e6, 0 0 70px #3200e6;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #e7e6e6, 0 0 20px #f6f1f3,
+      0 0 20px #ffffff, 0 0 20px #e6e6e6, 0 0 30px #ffffff, 0 0 30px #ff4da6;
+  }
+}
+
+@media (max-width: 630px) {
+  .homeBox {
+    flex-direction: column;
+  }
+  .text {
+    font-size: 70px;
+    line-height: 100px;
+    color: azure;
+  }
+  .homeQr {
+    height: 170px;
+  }
+}
+
+/* __Animations__*/
+
+.loader1 {
+  width: 160px;
+  aspect-ratio: 1;
+  display: grid;
+}
+
+.loader1:before,
+.loader1:after {
+  content: "";
+  grid-area: 1/1;
+  width: 75px;
+  aspect-ratio: 1;
+  box-shadow: 0 0 0 3px #080808 inset;
+  filter: drop-shadow(85px 85px 0 #ffffff);
+  animation: l8 2s infinite alternate;
+}
+
+.loader1:after {
+  margin: 0 0 0 auto;
+  filter: drop-shadow(-80px 80px 0 hsl(0, 0%, 98%));
+  animation-delay: -1s;
+}
+
+@keyframes l8 {
+  0%,
+  10% {
+    border-radius: 0;
+  }
+  30%,
+  40% {
+    border-radius: 50% 0;
+  }
+  60%,
+  70% {
+    border-radius: 50%;
+  }
+  90%,
+  100% {
+    border-radius: 0 50%;
+  }
+}
