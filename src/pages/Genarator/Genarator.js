@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./genarator.css";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import QRCode from "react-qr-code";
 import { toPng } from "html-to-image";
 import axios from "axios";
+//import Alert from "../../components/AlertBox"
 import { getCurrentUser } from "../../services/authService";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import SaveIcon from '@mui/icons-material/Save';
@@ -11,12 +12,20 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DownloadIcon from '@mui/icons-material/Download';
 import DownloadDoneOutlinedIcon from '@mui/icons-material/DownloadDoneOutlined';
+import SimpleAlert from "../../components/AlertBox";
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+import { Snackbar } from "@mui/material";
+
+
 function Genarator(props) {
+  const [qrCodes, setQrCodes] = useState([]);
   const [value, setValue] = useState();
   const [size, setSize] = useState(300);
   const [animate, setAnimate] = useState(false);
   const [qrColor, setQrColor] = useState("#ffffff"); // Default color is black
   const [save, setSave] = useState(false);
+  const [alert, setAlert] = useState({ open:"",message: "", severity: "" });
   const customColors = [
     "#ffffff",
     "#FF0000",
@@ -30,6 +39,24 @@ function Genarator(props) {
   ];
   const qrRef = useRef();
   let currentUser = getCurrentUser();
+
+  function SimpleAlert(props) {
+    return (
+      <Alert icon={<CheckIcon fontSize="inherit" />} severity={props.severity}>
+        {props.message}
+      </Alert>
+    );
+  }
+  const handleClose = () => {
+    setAlert({ ...alert, open: false });
+  };
+
+  useEffect(() => {
+    
+  
+      fetchQrCodes(currentUser.id);
+      
+    }, [props.count]);
 
   //setAnimation use to avoid animation repeating when click the genarate
 
@@ -55,13 +82,17 @@ function Genarator(props) {
       const response = await axios.get(
         `http://localhost:3000/api/profile-data/user-qr-codes/${userId}`
       );
-      //setQrCodes(response.data);
+      await setQrCodes(response.data);
+     
     } catch (error) {
       console.error("Failed to fetch QR codes:", error);
     }
   };
   const saveQrCode = async () => {
-    if (qrRef.current) {
+    
+   // console.log(qrCodes.length);
+    if(qrCodes.length < 3 || currentUser.username === "thimira"){
+      if (qrRef.current) {
       toPng(qrRef.current)
         .then(async (dataUrl) => {
           const qrImageBase64 = dataUrl.split(",")[1]; // Extract base64 image
@@ -75,20 +106,34 @@ function Genarator(props) {
           );
 
           setSave(true);
-          alert(response.data.message);
+          //alert(response.data.message);
+          setAlert({ open: true,
+            message: response.data.message,
+            severity: "success", });
           props.refresh();
           console.log(props.count);
         })
         .catch((err) => {
           console.error("Failed to save QR code:", err);
           console.log(currentUser.id);
+          setAlert({ open: true,
+            message: "Failed to save QR code",
+            severity: "error", });
         });
-    }
+     }
+   
+   }
+   else{
+    setAlert({ open: true,
+      message: "You can save only 10 QR codes",
+      severity: "warning", });
+   }
   };
 
   function showDownload() {
     if (value === "") {
-      alert("Please give your Input");
+      //alert("Please give your Input");
+      <SimpleAlert message="Please give your Input" severity = "warning" />;
     } else {
       if (!animate) {
         setAnimate(true);
@@ -189,6 +234,7 @@ function Genarator(props) {
                 setAnimate(false);
                 setSave(false);
                 notGenrated();
+                props.setCount(props.count + 1);
               }}
               className="qrInput"
             />
@@ -272,9 +318,24 @@ function Genarator(props) {
 
       <div className="genaratorBoxBottom" id="downloadBox">
         {value && (
-          <button onClick={saveQrCode} className="saveButton">
-            {save ? "saved" : "save"}{save? <SaveIcon/> : <SaveOutlinedIcon/>}
-          </button>
+          <><button onClick={saveQrCode} className="saveButton">
+            {save ? "saved" : "save"}{save ? <SaveIcon /> : <SaveOutlinedIcon />}
+          </button> 
+          <Snackbar
+            open={alert.open}
+            autoHideDuration={3000}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }} // Position of the alert
+          >
+            <Alert
+              onClose={handleClose}
+              severity={alert.severity}
+              sx={{ width: "100%" }}
+            >
+              {alert.message}
+            </Alert>
+          </Snackbar>
+          </>
         )}
         <div className="" id="spinner"></div>
         {/* <button
