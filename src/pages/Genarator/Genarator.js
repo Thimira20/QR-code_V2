@@ -16,6 +16,7 @@ import SimpleAlert from "../../components/AlertBox";
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import { Snackbar } from "@mui/material";
+import jsPDF from "jspdf";
 
 
 function Genarator(props) {
@@ -58,25 +59,107 @@ function Genarator(props) {
       
     }, [props.count]);
 
-  //setAnimation use to avoid animation repeating when click the genarate
+    const shareQrCode = async () => {
+      if (qrRef.current) {
+        try {
+          const dataUrl = await toPng(qrRef.current);
+          const blob = await (await fetch(dataUrl)).blob();
+          const file = new File([blob], "qr-code.png", { type: blob.type });
+    
+          if (navigator.share) {
+            // Use Web Share API
+            await navigator.share({
+              title: "QR Code",
+              text: "Check out this QR code!",
+              files: [file], // Sharing the image file
+            });
+            setAlert({
+              open: true,
+              message: "Shared successfully!",
+              severity: "success",
+            });
+          } else {
+            setAlert({
+              open: true,
+              message: "Sharing not supported on this device.",
+              severity: "warning",
+            });
+          }
+        } catch (error) {
+          console.error("Failed to share QR code:", error);
+          setAlert({
+            open: true,
+            message: "Failed to share QR code.",
+            severity: "error",
+          });
+        }
+      }
+    };
 
-  //const qr = document.getElementById(".qrBox");
+    // Add this function inside the `Genarator` component
+    const downloadAsPdf = async () => {
+      if (qrRef.current) {
+        try {
+          // Generate the image of the QR code
+          const dataUrl = await toPng(qrRef.current);
+    
+          // Initialize jsPDF
+          const pdf = new jsPDF();
+    
+          // Add custom text to the PDF
+          const title = "Generated QR Code"; // Title text
+          const subtitle = `URL: ${value}`; // Subtitle with the user's input
+          const note = "Thank you for using the QR Code Generator!"; // Footer text
+    
+          pdf.setFontSize(16);
+          pdf.text(title, pdf.internal.pageSize.getWidth() / 2, 20, { align: "center" }); // Centered title
+          pdf.setFontSize(12);
+          pdf.text(subtitle, pdf.internal.pageSize.getWidth() / 2, 30, { align: "center" }); // Centered subtitle
+    
+          // Add QR code image to PDF (centered)
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imageWidth = 100; // Desired width of the QR code in PDF
+          const imageHeight = 100; // Desired height of the QR code in PDF
+          const x = (pdfWidth - imageWidth) / 2;
+          const y = 50; // Start position for the QR code image
+    
+          pdf.addImage(dataUrl, "PNG", x, y, imageWidth, imageHeight);
+    
+          // Add footer text below the QR code
+          pdf.setFontSize(10);
+          pdf.text(note, pdf.internal.pageSize.getWidth() / 2, y + imageHeight + 20, { align: "center" });
+    
+          // Save the PDF
+          pdf.save(`easyQr ${value}.pdf`);
+    
+          // Success alert
+          setAlert({
+            open: true,
+            message: "QR Code downloaded as PDF successfully!",
+            severity: "success",
+          });
+        } catch (error) {
+          console.error("Failed to generate PDF:", error);
+    
+          // Error alert
+          setAlert({
+            open: true,
+            message: "Failed to download QR Code as PDF.",
+            severity: "error",
+          });
+        }
+      } else {
+        setAlert({
+          open: true,
+          message: "No QR Code to download.",
+          severity: "warning",
+        });
+      }
+    };
+    
+    
 
-  // const downloadBtn = function () {
-  //   setTimeout(() => {
-  //     const saveUrl = qr.querySelector("svg").xmlns;
-  //     createSaveBtn(saveUrl);
-  //   }, 50);
-  // };
-  // const createSaveBtn = function (saveUrl) {
-  //   const link = document.createElement("a");
-  //   link.id = "savelink";
-  //   link.classList = "delButton";
-  //   link.href = saveUrl;
-  //   link.download = "qrcode";
-  //   link.innerHTML = "Download";
-  //   document.getElementById("genaratorBoxBottom").appendChild(link);
-  // };
   const fetchQrCodes = async (userId) => {
     try {
       const response = await axios.get(
@@ -91,7 +174,7 @@ function Genarator(props) {
   const saveQrCode = async () => {
     
    // console.log(qrCodes.length);
-    if(qrCodes.length < 3 || currentUser.username === "thimira"){
+    if(qrCodes.length < 10 || currentUser.username === "thimira"){
       if (qrRef.current) {
       toPng(qrRef.current)
         .then(async (dataUrl) => {
@@ -320,6 +403,12 @@ function Genarator(props) {
         {value && (
           <><button onClick={saveQrCode} className="saveButton">
             {save ? "saved" : "save"}{save ? <SaveIcon /> : <SaveOutlinedIcon />}
+          </button> 
+          <button onClick={shareQrCode} className="shareButton">
+            Share QR Code
+          </button>
+          <button onClick={downloadAsPdf} className="pdfButton">
+            Download as PDF
           </button> 
           <Snackbar
             open={alert.open}

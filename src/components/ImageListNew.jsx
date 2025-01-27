@@ -14,6 +14,7 @@ import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
 import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import axios from "axios";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import "./imageList.css"
 
 export default function TitlebarBelowImageList({ userId, count, refresh }) {
   const [qrCodes, setQrCodes] = useState([]);
@@ -141,14 +142,14 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
                         {item.isFavorite ? (
                           <FavoriteIcon />
                         ) : (
-                          <FavoriteBorderIcon />
+                          <FavoriteBorderIcon className="fav-icon" />
                         )}
                       </IconButton>
                       <IconButton
                         onClick={() => deleteQrCode(item._id)}
                         sx={{ color: "white" }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon className="delete-icon" />
                       </IconButton>
                     </>
                   }
@@ -176,6 +177,7 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
             fetchQrCodes();
           }
         }}
+        className="showAll"
       >
         {showFavorites ? "Show All" : "Show Favorites"}
       </button>
@@ -191,22 +193,30 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
             setIsModalOpen(true);
           }
         }}
+        className="deleteAll"
       >
-        {deleteAll ? <DeleteSweepIcon /> : <DeleteSweepOutlinedIcon />}
+        {deleteAll ? <DeleteSweepIcon /> : <DeleteSweepOutlinedIcon className="delete-icon" />}
       </button>
-      <DeleteConfirmationModal
+      {/* <DeleteConfirmationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={deleteAllQrCodes}
         title="Confirm Deletion"
         description={description}
-      />
+      /> */}
       {/* Backdrop with Spinner */}
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={isDeleting}
       >
-        <CircularProgress color="inherit" />
+        <DeleteConfirmationModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={deleteAllQrCodes}
+          title="Confirm Deletion"
+          description={description}
+        />
+        <CircularProgress color="inherit" zIndex = "10000" />
       </Backdrop>
     </>
   );

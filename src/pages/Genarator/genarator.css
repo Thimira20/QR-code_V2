@@ -230,6 +230,40 @@
     background-color: rgb(189, 245, 197);
     color: rgba(67, 0, 97, 255);
 }
+.shareButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s, box-shadow 0.5s ease;
+  }
+  
+  .shareButton:hover {
+    background-color: #0056b3;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+
+  .pdfButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.5s;
+  }
+  
+  .pdfButton:hover {
+    background-color: #45a049;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  }
+  
 
 
 /* HTML: <div class="loader"></div> */

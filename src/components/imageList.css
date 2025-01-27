@@ -1,0 +1,54 @@
+.delete-icon {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .delete-icon:hover {
+    color: rgb(255, 13, 0); /* Change color on hover */
+    transform: scale(1.2); /* Scale the icon */
+  }
+  
+.fav-icon {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .fav-icon:hover {
+    color: rgb(228, 248, 9); /* Change color on hover */
+    transform: scale(1.2); /* Scale the icon */
+  }
+  
+  .deleteAll {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .deleteAll:hover {
+    background-color: #26fb31;
+  }
+  
+  .showAll {
+    background-color: #3f7cf8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .showAll:hover {
+    background-color: #3403e4;
+  }
+  
