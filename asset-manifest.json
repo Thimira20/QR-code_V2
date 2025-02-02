@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/qr-code2/static/css/main.41ce3191.css",
-    "main.js": "/qr-code2/static/js/main.f78f996c.js",
-    "static/js/239.630902f1.chunk.js": "/qr-code2/static/js/239.630902f1.chunk.js",
-    "static/js/213.ffa6c123.chunk.js": "/qr-code2/static/js/213.ffa6c123.chunk.js",
-    "static/js/732.aaed3b6c.chunk.js": "/qr-code2/static/js/732.aaed3b6c.chunk.js",
-    "index.html": "/qr-code2/index.html",
-    "main.41ce3191.css.map": "/qr-code2/static/css/main.41ce3191.css.map",
-    "main.f78f996c.js.map": "/qr-code2/static/js/main.f78f996c.js.map",
-    "239.630902f1.chunk.js.map": "/qr-code2/static/js/239.630902f1.chunk.js.map",
-    "213.ffa6c123.chunk.js.map": "/qr-code2/static/js/213.ffa6c123.chunk.js.map",
-    "732.aaed3b6c.chunk.js.map": "/qr-code2/static/js/732.aaed3b6c.chunk.js.map"
+    "main.css": "//thimira20.github.io/QR-code_V2/static/css/main.41ce3191.css",
+    "main.js": "//thimira20.github.io/QR-code_V2/static/js/main.5f7c8767.js",
+    "static/js/239.630902f1.chunk.js": "//thimira20.github.io/QR-code_V2/static/js/239.630902f1.chunk.js",
+    "static/js/213.ffa6c123.chunk.js": "//thimira20.github.io/QR-code_V2/static/js/213.ffa6c123.chunk.js",
+    "static/js/732.aaed3b6c.chunk.js": "//thimira20.github.io/QR-code_V2/static/js/732.aaed3b6c.chunk.js",
+    "index.html": "//thimira20.github.io/QR-code_V2/index.html",
+    "main.41ce3191.css.map": "//thimira20.github.io/QR-code_V2/static/css/main.41ce3191.css.map",
+    "main.5f7c8767.js.map": "//thimira20.github.io/QR-code_V2/static/js/main.5f7c8767.js.map",
+    "239.630902f1.chunk.js.map": "//thimira20.github.io/QR-code_V2/static/js/239.630902f1.chunk.js.map",
+    "213.ffa6c123.chunk.js.map": "//thimira20.github.io/QR-code_V2/static/js/213.ffa6c123.chunk.js.map",
+    "732.aaed3b6c.chunk.js.map": "//thimira20.github.io/QR-code_V2/static/js/732.aaed3b6c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41ce3191.css",
-    "static/js/main.f78f996c.js"
+    "static/js/main.5f7c8767.js"
   ]
 }
