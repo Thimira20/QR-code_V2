@@ -1,27 +1,41 @@
+@import 'https://fonts.googleapis.com/css?family=Baloo+Paaji';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .genaratorBox {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     height: auto;
     max-height: max-content;
     min-height: 700;
+    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/wallpapersden.com_macbook-pro-m3-4k_3456x2234.jpg?raw=true");
 }
 
 .genaratorBoxTop {
     flex: 0.5;
-    background-color: antiquewhite;
+   
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100px;
+    z-index: 1;
 }
 
 .genTopic {
-    color: #000;
+    color: #ffffff;
     text-align: center;
     text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
     -webkit-text-stroke-width: 1;
     -webkit-text-stroke-color: #000;
-    font-family: Kanit;
+    font-family: 'Montserrat', sans-serif;
     font-size: 48px;
     font-style: normal;
     font-weight: bold;
@@ -34,6 +48,7 @@
     justify-content: space-between;
     margin: 10px 0;
     padding: 10px 0;
+    font-family: 'Nunito', sans-serif;
 }
 
 .spacingBox {
@@ -47,7 +62,7 @@
     flex-direction: column;
     padding: 10px 0;
     margin: 20px 10px;
-    background-color: rgba(8, 11, 106, 0.5);
+    background-color: rgba(255, 255, 255, 0.595);
     border-radius: 9px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
@@ -92,6 +107,10 @@
     justify-content: center;
     align-items: center;
     margin: 20px auto;
+}
+
+.buttonBox button {
+    font-family: 'Poppins', sans-serif;
 }
 
 .qrIcon {
@@ -139,10 +158,14 @@
 .saveButton {
     display: flex;
     padding: 7px 20px 7px 20px;
-    margin: 0 20px;
+    margin: 20px;
     font-size: 18px;
     border-radius: 20px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: background-color 0.5s, color 0.5s, font-weght 0.5s, box-shadow 0.5s;
 }
@@ -209,6 +232,7 @@
     flex: 2;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     display: flex;
     margin: 20px auto;
 }
@@ -237,8 +261,12 @@
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
     margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: background-color 0.3s, box-shadow 0.5s ease;
   }
   
@@ -256,12 +284,17 @@
     margin: 10px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s, box-shadow 0.5s;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, box-shadow 0.5s, transform 0.3s;
   }
   
   .pdfButton:hover {
     background-color: #45a049;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    transform: scale(1.1);
   }
   
 
@@ -407,3 +440,7 @@
 
 
 /* CSS */
+
+.qrBox {
+    font-family: 'Raleway', sans-serif;
+}

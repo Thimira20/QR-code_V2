@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+
 .profileBox {
     display: flex;
     flex-direction: column;
@@ -5,6 +12,7 @@
     height: 700px;
     width: 100%;
     left: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .top {
@@ -15,81 +23,65 @@
     text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
     -webkit-text-stroke-width: 1;
     -webkit-text-stroke-color: #000;
-    font-family: Kanit;
+    font-family: 'Montserrat', sans-serif;
     font-size: 48px;
     font-style: normal;
     font-weight: bold;
 }
 
-.genTopic {
-    color: #000;
-    text-align: center;
-    text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
-    -webkit-text-stroke-width: 1;
-    -webkit-text-stroke-color: #000;
-    font-family: Kanit;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: bold;
-}
+
 
 .bottom {
     flex: 6;
     display: flex;
     flex-direction: row;
+    font-family: 'Nunito', sans-serif;
 }
 
 
 /*=======Left=======*/
 
-.left {
-    background-color: aquamarine;
+/* .left {
+    
+   
+    
+    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/depositphotos_32137905-stock-photo-qr-code-science-and-technology.jpg?raw=true");
     flex: 2;
     display: flex;
     flex-direction: column;
     min-height: 400px;
-}
+    font-family: 'Poppins', sans-serif;
+    backdrop-filter: blur(8px);
+  
+} */
 
-.leftTop {
+.left {
+    position: relative;
     flex: 2;
-    background-color: aquamarine;
-    justify-content: center;
-    align-items: center;
     display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
 }
 
-.savedImage {
-    height: 200px;
-    width: 200px;
-    display: flex;
+.left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/depositphotos_32137905-stock-photo-qr-code-science-and-technology.jpg?raw=true");
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px); /* Apply the blur effect */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
 }
 
-.leftBottom {
-    flex: 1;
-    background-color: blueviolet;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
 
-.qrName {
-    display: flex;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: rgb(75, 110, 215);
-    color: white;
-    font-family: "Kanit";
-    font-size: 15px;
-    padding: 5px 10px;
-}
 
-.savedImage {
-    height: 200px;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 
 /*=======Right=======*/

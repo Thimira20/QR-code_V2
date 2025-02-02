@@ -1,7 +1,8 @@
 .homeBox {
-  background-color: rgba(67, 0, 97, 255);
+  background-color: rgb(0, 0, 0);
   display: flex;
   height: 768px;
+  background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/wallpapersden.com_cool-4k-pattern_3840x2160.jpg?raw=true");
 }
 
 .homeBoxLeft {
@@ -62,7 +63,7 @@
   text-align: center;
   text-shadow: 0px 15px 40px rgba(0, 0, 0, 0.35);
   color: #ffffff;
-  font-family: Kanit;
+ 
   font-size: 100px;
   font-style: normal;
   font-weight: 700;
@@ -81,7 +82,7 @@
   }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 780px) {
   .homeBox {
     flex-direction: column;
   }
@@ -107,9 +108,10 @@
 .loader1:after {
   content: "";
   grid-area: 1/1;
+  
   width: 75px;
   aspect-ratio: 1;
-  box-shadow: 0 0 0 3px #080808 inset;
+  box-shadow: 0 0 0 3px #e0fc0e inset;
   filter: drop-shadow(85px 85px 0 #ffffff);
   animation: l8 2s infinite alternate;
 }
@@ -132,9 +134,96 @@
   60%,
   70% {
     border-radius: 50%;
+    box-shadow: 0 0 0 3px #0099ffe1 inset;
   }
   90%,
   100% {
     border-radius: 0 50%;
   }
+}
+
+
+/*============wellcome=================*/
+@import 'https://fonts.googleapis.com/css?family=Baloo+Paaji';
+
+h1, h2{
+  
+  font-family: 'Baloo Paaji', cursive;
+  
+  
+  span{
+    width: 100%;
+    float: left;
+    color: #ffffff;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    transform: translateY(-50px);
+    opacity: 0;
+    animation-name: titleAnimation;
+    animation-timing-function:ease;
+    animation-duration: 3s;
+    animation-iteration-count: infinite; /* Repeat the animation infinitely */
+    -webkit-animation-iteration-count: infinite; 
+  }
+}
+h1 span{
+  animation-delay: 0.6s;
+  -webkit-animation-fill-mode: forwards;
+
+  &:first-child{
+    animation-delay: 0.7s;
+
+  }
+
+  &:last-child{
+    color: #ffe221;
+    animation-delay: 0.5s;
+  }
+}
+
+/* h2{ 
+  top: 0;
+  position: absolute;
+  
+  span{
+    animation-delay: 4.1s;
+    -webkit-animation-fill-mode: forwards;
+
+    &:first-child{
+      animation-delay: 4.2s;
+
+    }
+
+    &:last-child{
+      color: #ffe221;
+      animation-delay: 4s;
+    }
+  }
+} */
+@keyframes titleAnimation {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+}
+20% {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+}
+80% {
+     transform: translateY(0);
+     opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+}
+100% {
+     transform: translateY(50px);
+     opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+  
+}
 }

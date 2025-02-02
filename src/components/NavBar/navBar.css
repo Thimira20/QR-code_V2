@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 .navBarBox {
     display: flex;
     background-color: rgba(67, 0, 97, 255);
+    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/pngtree-3d-cube-background-abstract-texture-wallpaper-picture-image_2670042.jpg?raw=true");
     position: sticky;
     width: 100%;
     top: 0;
@@ -57,9 +59,10 @@
 }
 
 .navButton {
-    background-color: rgba(67, 0, 97, 255);
-    border-color: white;
-    color: white;
+    /* background-color: rgba(67, 0, 97, 255); */
+    background-color: transparent;
+    
+    color: rgba(255, 255, 255, 0.808);
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 15px;
@@ -67,14 +70,16 @@
     cursor: pointer;
     border-radius: 8px;
     border-width: 0;
-    transition: background-color 0.5s, color 0.5s;
+    transition: background-color 0.5s, color 0.5s, transform 0.3s;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
     margin: 0 10px;
 }
 
 .navButton:hover {
     background-color: white;
     color: rgba(67, 0, 97, 255);
+    transform: scale(1.2);
 }
 
 

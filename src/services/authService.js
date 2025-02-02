@@ -38,6 +38,8 @@ export const login = async (email, password) => {
 
 export const logout = () => {
   localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  window.location.reload();
 };
 
 export const getCurrentUser = () => {

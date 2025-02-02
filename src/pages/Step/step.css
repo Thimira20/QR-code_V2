@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+
 .stepBox {
   background-color: rgba(67, 0, 97, 255);
   display: flex;
   flex-direction: column;
   padding-right: 20px;
+  background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/staircase-spiral-stairway-4k.jpg?raw=true");
 }
 
 .stepBoxTop {
@@ -11,14 +20,16 @@
   align-items: center;
   justify-content: center;
 }
+@import 'https://fonts.googleapis.com/css?family=Baloo+Paaji';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 .stepTopic {
-  color: #000;
+  color: #ffffff;
   text-align: center;
   text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
   -webkit-text-stroke-width: 1;
   -webkit-text-stroke-color: #000;
-  font-family: Kanit;
+  font-family: 'Montserrat', sans-serif;
   font-size: 48px;
   font-style: normal;
   font-weight: 700;
@@ -28,12 +39,7 @@
     box-shadow 0.5s;
 }
 
-.stepTopic:hover {
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  border-radius: 15px;
-  background-color: white;
-  color: rgba(67, 0, 97, 255);
-}
+
 
 .stepBoxBottom {
   flex: 6;
@@ -92,8 +98,9 @@
 
 .stepText {
   flex: 5;
-  color: #fff;
-  font-family: Kanit;
+  background-color: #ffffff90;
+  color: #000000;
+  font-family: 'Oswald', sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 700;
@@ -105,7 +112,7 @@
 }
 
 .stepText:hover {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.53);
   color: rgba(67, 0, 97, 255);
   border-radius: 15px;
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 .delete-icon {
     font-size: 30px;
     color: rgb(255, 255, 255);
@@ -5,7 +7,7 @@
   }
   
   .delete-icon:hover {
-    color: rgb(255, 13, 0); /* Change color on hover */
+    color: rgb(255, 255, 255); /* Change color on hover */
     transform: scale(1.2); /* Scale the icon */
   }
   
@@ -21,7 +23,7 @@
   }
   
   .deleteAll {
-    background-color: #4caf50;
+    background-color: #ff4343;
     color: white;
     border: none;
     border-radius: 5px;
@@ -30,10 +32,11 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+   
   }
   
   .deleteAll:hover {
-    background-color: #26fb31;
+    background-color: #ff0000;
   }
   
   .showAll {
@@ -45,6 +48,7 @@
     margin: 10px;
     cursor: pointer;
     font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s;
   }
   

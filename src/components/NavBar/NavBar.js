@@ -4,8 +4,9 @@ import Login from "../Login/Login";
 import Signup from "../SignUp/Signup";
 import { getCurrentUser, logout } from "../../services/authService";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Refresh } from "@mui/icons-material";
 
-function NavBar({ user, setUser }) {
+function NavBar({ user, setUser, refresh }) {
   let currentUser = getCurrentUser();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -58,6 +59,7 @@ function NavBar({ user, setUser }) {
   const handleLogout = () => {
     logout();
     setUser(null);
+    refresh();
   };
 
   return (
@@ -99,7 +101,7 @@ function NavBar({ user, setUser }) {
             Generate
           </button>
           <button className="navButton" onClick={handleContactClick}>
-            Contact
+            About Us
           </button>
         </div>
       </div>
@@ -137,7 +139,7 @@ function NavBar({ user, setUser }) {
           Generate
         </button>
         <button className="sidebarButton" onClick={handleContactClick}>
-          Contact
+          About Us
         </button>
       </div>
       <button className="menuButton" onClick={toggleSidebar}>

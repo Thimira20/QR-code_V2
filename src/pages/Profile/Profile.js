@@ -41,11 +41,11 @@ function Profile(props) {
           />
           
         </div>
-        <div className="right">
+        {/* <div className="right">
           <div>Username : {user.username}</div>
           <div>Email : {user.email}</div>
           
-        </div>
+        </div> */}
       </div>
     </div>
   );

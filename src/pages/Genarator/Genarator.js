@@ -13,6 +13,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import DownloadIcon from '@mui/icons-material/Download';
 import DownloadDoneOutlinedIcon from '@mui/icons-material/DownloadDoneOutlined';
 import SimpleAlert from "../../components/AlertBox";
+import ShareIcon from '@mui/icons-material/Share';
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
 import { Snackbar } from "@mui/material";
@@ -52,13 +53,20 @@ function Genarator(props) {
     setAlert({ ...alert, open: false });
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     
   
-      fetchQrCodes(currentUser.id);
+  //     fetchQrCodes(currentUser.id);
       
-    }, [props.count]);
-
+  //   }, [props.count]);
+  useEffect(() => {
+    if (currentUser) {
+      fetchQrCodes(currentUser.id);
+    } else {
+      console.warn("No user is currently logged in.");
+    }
+  }, [props.count]);
+  
     const shareQrCode = async () => {
       if (qrRef.current) {
         try {
@@ -194,7 +202,7 @@ function Genarator(props) {
             message: response.data.message,
             severity: "success", });
           props.refresh();
-          console.log(props.count);
+         
         })
         .catch((err) => {
           console.error("Failed to save QR code:", err);
@@ -303,6 +311,7 @@ function Genarator(props) {
       <div className="genaratorBoxTop">
         <p className="genTopic">Genarate Yor Own QR</p>
       </div>
+      
       <div className="genaratorBoxUp">
         <div className="spacingBox"></div>
         <div className="urlSizeBox">
@@ -316,6 +325,7 @@ function Genarator(props) {
                 clearUI();
                 setAnimate(false);
                 setSave(false);
+               
                 notGenrated();
                 props.setCount(props.count + 1);
               }}
@@ -400,15 +410,16 @@ function Genarator(props) {
       </div>
 
       <div className="genaratorBoxBottom" id="downloadBox">
-        {value && (
+        {value && props.user? (
           <><button onClick={saveQrCode} className="saveButton">
             {save ? "saved" : "save"}{save ? <SaveIcon /> : <SaveOutlinedIcon />}
           </button> 
           <button onClick={shareQrCode} className="shareButton">
-            Share QR Code
+            Share QR Code 
+            <ShareIcon/>
           </button>
           <button onClick={downloadAsPdf} className="pdfButton">
-            Download as PDF
+            Download as PDF <DownloadIcon/>
           </button> 
           <Snackbar
             open={alert.open}
@@ -425,7 +436,7 @@ function Genarator(props) {
             </Alert>
           </Snackbar>
           </>
-        )}
+        ) : console.log("No user is currently logged in.")}
         <div className="" id="spinner"></div>
         {/* <button
           onClick={downloadBtn}

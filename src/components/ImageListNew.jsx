@@ -131,6 +131,7 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
                   loading="lazy"
                 />
                 <ImageListItemBar
+                  sx={{fontSize: "20px", color: "Black", fontWeight: "bold"}}
                   title={item.qrText}
                   position="below"
                   actionIcon={

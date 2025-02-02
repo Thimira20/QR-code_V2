@@ -6,16 +6,16 @@
 
 .aboutTop {
     flex: 2;
-    background-color: antiquewhite;
+    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/wallpapersden.com_macbook-pro-m3-4k_3456x2234.jpg?raw=true");
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 .aboutTopic {
-    color: #000;
+    color: #ffffffe8;
     text-align: center;
     text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
     -webkit-text-stroke-width: 1;
-    -webkit-text-stroke-color: #000;
-    font-family: Kanit;
+    -webkit-text-stroke-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
@@ -33,7 +33,8 @@
 
 .aboutUp {
     flex: 6;
-    background-color: aqua;
+    background: rgb(43,9,70);
+    background: linear-gradient(90deg, rgba(43,9,70,1) 0%, rgba(131,13,205,1) 36%, rgba(215,214,215,1) 100%);
     min-height: 400px;
 }
 
@@ -64,6 +65,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: rgba(42, 40, 38, 0.515);
 }
 
 .helpButton {
@@ -118,6 +120,69 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     box-shadow: black;
 }
+
+.aboutContent {
+    padding: 20px;
+    line-height: 1.8;
+    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/abstract-background-1.jpg?raw=true");
+  }
+  
+  .abouthead {
+    font-size: 30px;
+    color: #000000;
+    font-weight: bold;
+    
+  }
+  
+  .aboutContent h3 {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    color: #000000;
+  }
+  
+  .aboutContent ul {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+  .aboutContent p {
+    font-size: larger;
+    color: #272222d7;
+  }
+  
+  .aboutContent ul li {
+    margin-bottom: 10px;
+    color: #494747e7;
+    font-size: larger;
+  }
+  
+  .aboutContent a {
+    color: #0073e6;
+    text-decoration: none;
+  }
+  
+  .aboutContent a:hover {
+    text-decoration: underline;
+  }
+
+  .about{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .contact{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background-color: #f5f5f5b1;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+  
 
 @media screen and (max-width: 630px) {
     .aboutTopic {
