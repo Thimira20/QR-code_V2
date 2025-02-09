@@ -2,7 +2,7 @@
 .navBarBox {
     display: flex;
     background-color: rgba(67, 0, 97, 255);
-    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/pngtree-3d-cube-background-abstract-texture-wallpaper-picture-image_2670042.jpg?raw=true");
+    background-image: url("/public/images/pngtree-3d-cube-background-abstract-texture-wallpaper-picture-image_2670042.jpg");
     position: sticky;
     width: 100%;
     top: 0;
@@ -24,7 +24,7 @@
     margin-top: 8px;
     margin-bottom: 0;
     text-shadow: 0px 15px 40px rgba(0, 0, 0, 0.35);
-    font-family: Kanit;
+    font-family: 'Arial', sans-serif;
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
@@ -39,7 +39,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: Kanit;
+    font-family: 'Arial', sans-serif;
     font-size: 50px;
     font-style: normal;
     font-weight: 700;

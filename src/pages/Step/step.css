@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   padding-right: 20px;
-  background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/staircase-spiral-stairway-4k.jpg?raw=true");
+  background-image: url("/public/images/steps_stairs_twisting_162712_3840x2400.jpg");
 }
 
 .stepBoxTop {

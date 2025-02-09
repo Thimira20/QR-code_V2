@@ -21,8 +21,9 @@ function Login({ closeLoginModal, setUser }) {
       }
       const normalizedEmail = email.trim().toLowerCase(); // Safely use toLowerCase
       const user = await login(normalizedEmail, password);
-      setUser(user);
-      alert("Login successful");
+      setUser(user.user);
+      alert(`"Login successful" ${user.user.role}`);
+      
       closeLoginModal();
     } catch (error) {
       console.log("Login error:", error); // Log the error for debugging

@@ -5,6 +5,7 @@ import Signup from "../SignUp/Signup";
 import { getCurrentUser, logout } from "../../services/authService";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Refresh } from "@mui/icons-material";
+import AnimatedLogo from "../AnimatedLogo";
 
 function NavBar({ user, setUser, refresh }) {
   let currentUser = getCurrentUser();
@@ -65,7 +66,9 @@ function NavBar({ user, setUser, refresh }) {
   return (
     <div>
       <div className={`navBarBox ${sidebarOpen ? "hideNavBar" : ""}`}>
+      
         <div className="navBarBoxLeft">
+          
           <p className="easy">easy</p>
           <p className="qr">QR</p>
         </div>

@@ -16,15 +16,15 @@
 }
 
 .top {
-    background-color: rgb(155, 30, 208, 0.3);
+    background-color: rgba(0, 0, 0, 0.875);
     flex: 1;
-    color: #000;
+    color: #ffffffdc;
     text-align: center;
     text-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
     -webkit-text-stroke-width: 1;
     -webkit-text-stroke-color: #000;
     font-family: 'Montserrat', sans-serif;
-    font-size: 48px;
+    font-size: 40px;
     font-style: normal;
     font-weight: bold;
 }
@@ -72,7 +72,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/depositphotos_32137905-stock-photo-qr-code-science-and-technology.jpg?raw=true");
+    background-image: url("/public/images/depositphotos_32137905-stock-photo-qr-code-science-and-technology.jpg");
     background-size: cover;
     background-position: center;
     filter: blur(4px); /* Apply the blur effect */

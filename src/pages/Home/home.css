@@ -1,8 +1,10 @@
+
 .homeBox {
   background-color: rgb(0, 0, 0);
   display: flex;
   height: 768px;
-  background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/wallpapersden.com_cool-4k-pattern_3840x2160.jpg?raw=true");
+  background-image: url("/public/images/wallpapersden.com_cool-4k-pattern_3840x2160.jpg");
+  
 }
 
 .homeBoxLeft {

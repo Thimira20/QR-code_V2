@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./home.css";
+import AnimatedLogo from "../../components/AnimatedLogo";
+
 
 function Home(props) {
+  const [size, setSize] = useState({ width: 200, height: 200 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 480) {
+        setSize({ width: 200, height: 200 });
+      } else if (window.innerWidth <= 810) {
+        setSize({ width: 210, height: 210 });
+      } else {
+        setSize({ width: 300, height: 300 });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Call the function initially to set the size
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
-    <div className="homeBox">
+    <div className="homeBox" >
       <div className="homeBoxLeft">
         <div className="leftBoxContainer">
           {/* <p className="text">Welcome </p>
@@ -20,7 +42,8 @@ function Home(props) {
         {/* <div className="rightBoxContainer">
           <img src="/images/qr-codeHome.png" alt="" className="homeQr" />
         </div> */}
-        <div className="loader1"></div>
+        {/* <div className="loader1"></div> */}
+        <AnimatedLogo h={size.height} w={size.width} />
       </div>
     </div>
   );

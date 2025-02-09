@@ -39,8 +39,26 @@ function Genarator(props) {
     "purple",
     "orange",
   ];
+  const [imageAdded, setImageAdded] = useState(false);
+
+const handleImageUpload = () => {
+    // Upload logic here
+    setImageAdded(prev => !prev); // Toggle state to trigger re-fetch
+};
+
+
+
+
   const qrRef = useRef();
   let currentUser = getCurrentUser();
+
+  
+useEffect(() => {
+  if (currentUser?.id) {
+      fetchQrCodes(currentUser.id);
+  }
+  notGenrated();
+}, [currentUser, props.count]);
 
   function SimpleAlert(props) {
     return (
@@ -59,18 +77,18 @@ function Genarator(props) {
   //     fetchQrCodes(currentUser.id);
       
   //   }, [props.count]);
-  useEffect(() => {
-    if (currentUser) {
-      fetchQrCodes(currentUser.id);
-    } else {
-      console.warn("No user is currently logged in.");
-    }
-  }, [props.count]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     fetchQrCodes(currentUser.id);
+  //   } else {
+  //     console.warn("No user is currently logged in.");
+  //   }
+  // }, [props.count]);
   
     const shareQrCode = async () => {
       if (qrRef.current) {
         try {
-          const dataUrl = await toPng(qrRef.current);
+          const dataUrl = await toPng(qrRef.current);//
           const blob = await (await fetch(dataUrl)).blob();
           const file = new File([blob], "qr-code.png", { type: blob.type });
     
@@ -182,7 +200,7 @@ function Genarator(props) {
   const saveQrCode = async () => {
     
    // console.log(qrCodes.length);
-    if(qrCodes.length < 10 || currentUser.username === "thimira"){
+    if(qrCodes.length < 10 || currentUser.role === "admin"){
       if (qrRef.current) {
       toPng(qrRef.current)
         .then(async (dataUrl) => {
@@ -202,6 +220,7 @@ function Genarator(props) {
             message: response.data.message,
             severity: "success", });
           props.refresh();
+          handleImageUpload();
          
         })
         .catch((err) => {
@@ -292,10 +311,21 @@ function Genarator(props) {
     g.innerHTML = "Generating...";
     console.log("correct");
   };
+
+  const genBtnRef = useRef(null);
   const notGenrated = function () {
-    g.innerHTML = "Generate";
-    console.log("incorrect");
+    if (genBtnRef.current) {
+      genBtnRef.current.innerHTML = "Generate";
+    } else {
+      console.warn("genBtnRef is not attached to an element.");
+    }
   };
+  
+
+  // const notGenrated = function () {
+  //   g.innerHTML = "Generate";
+  //   console.log("incorrect");
+  // };
 
   function handleClick() {
     g.classList.add("genrating"); // Add the "clicked" class to change color
@@ -381,7 +411,7 @@ function Genarator(props) {
         </div>
 
         <div className="buttonBox">
-          <button
+          {/* <button
             onClick={() => {
               showDownload();
               handleClick();
@@ -391,7 +421,15 @@ function Genarator(props) {
             id="genBtn"
           >
             Generate
+          </button> */}
+          <button ref={genBtnRef} onClick={() => {
+              showDownload();
+              handleClick();
+              genrated();
+            }} className="genButton" id="genBtn">
+              Generate
           </button>
+
         </div>
         <div className="spacingBox"></div>
       </div>
@@ -436,7 +474,7 @@ function Genarator(props) {
             </Alert>
           </Snackbar>
           </>
-        ) : console.log("No user is currently logged in.")}
+        ) : " "}
         <div className="" id="spinner"></div>
         {/* <button
           onClick={downloadBtn}

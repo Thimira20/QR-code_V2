@@ -5,6 +5,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import AnimatedLogo from "../../components/AnimatedLogo";
 function AboutUs(props) {
   const handleHomeClick = () => {
     document
@@ -51,7 +52,7 @@ function AboutUs(props) {
           <h3>Contact Us</h3>
           <p>
             Have questions or feedback? Reach out to us on social media or via email at
-            <a href="mail : thimiranavodya20@gmail.com"> thimiranavodya20@example.com</a>.
+            <a href="mailto:thimiranavodya20@gmail.com">thimiranavodya20@gmail.com</a>.
           </p>
           </div>
       </div>
@@ -59,7 +60,8 @@ function AboutUs(props) {
       </div>
       <div className="aboutDown">
         <div className="leftHelpBar">
-          <QrCodeIcon className="qrLogo" />
+          {/* <QrCodeIcon className="qrLogo" /> */}
+          <AnimatedLogo h={40} w={40} />
         </div>
         <div className="spacing"></div>
         <div className="rightHelpBar">

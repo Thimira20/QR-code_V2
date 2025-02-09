@@ -6,7 +6,7 @@
 
 .aboutTop {
     flex: 2;
-    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/wallpapersden.com_macbook-pro-m3-4k_3456x2234.jpg?raw=true");
+    background-image: url("/public/images/wallpapersden.com_macbook-pro-m3-4k_3456x2234.jpg");
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 .aboutTopic {
@@ -27,7 +27,7 @@
 .aboutTopic:hover {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     border-radius: 15px;
-    background-color: white;
+   
     color: rgba(67, 0, 97, 255);
 }
 
@@ -41,7 +41,7 @@
 .aboutDown {
     flex: 2;
     display: flex;
-    background-color: bisque;
+   background-color: #3433335f;
     border-bottom: black;
 }
 
@@ -50,6 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 10px;
 }
 
 .qrLogo {
@@ -65,13 +66,13 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgba(42, 40, 38, 0.515);
 }
 
 .helpButton {
     background-color: transparent;
-    border-color: white;
-    color: rgb(17, 4, 4);
+    border-color: rgb(87, 82, 82);
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 15px;
@@ -124,7 +125,7 @@
 .aboutContent {
     padding: 20px;
     line-height: 1.8;
-    background-image: url("https://github.com/Thimira20/qr-code2/blob/master/public/images/abstract-background-1.jpg?raw=true");
+    background-image: url("/public/images/wallpapersden.com_cool-4k-pattern_3840x2160.jpg");
   }
   
   .abouthead {
@@ -146,12 +147,13 @@
   }
   .aboutContent p {
     font-size: larger;
-    color: #272222d7;
+    color: #ffffffd7;
+    font-weight: bold;
   }
   
   .aboutContent ul li {
     margin-bottom: 10px;
-    color: #494747e7;
+    color: #ffffffc5;
     font-size: larger;
   }
   

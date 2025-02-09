@@ -2,13 +2,13 @@
 
 .delete-icon {
     font-size: 30px;
-    color: rgb(255, 255, 255);
-    transition: color 0.3s, transform 0.3s;
+    color: rgb(31, 31, 31);
+    transition: color 0.8s, transform 0.8s;
   }
   
   .delete-icon:hover {
-    color: rgb(255, 255, 255); /* Change color on hover */
-    transform: scale(1.2); /* Scale the icon */
+    color: rgb(255, 10, 10); /* Change color on hover */
+    transform: scale(1.5); /* Scale the icon */
   }
   
 .fav-icon {
@@ -31,12 +31,13 @@
     margin: 10px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
    
   }
   
   .deleteAll:hover {
-    background-color: #ff0000;
+    background-color: #ffffff;
+    
   }
   
   .showAll {

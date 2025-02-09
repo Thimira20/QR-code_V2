@@ -30,7 +30,7 @@ function Profile(props) {
 
   return (
     <div className="profileBox">
-      <div className="top">Hi {user.username}'s Profile</div>
+      <div className="top"> {user.username}'s Profile</div>
       <div className="bottom">
         <div className="left">
           <ImageListNew
