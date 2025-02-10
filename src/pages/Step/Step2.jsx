@@ -79,9 +79,12 @@ function Steps() {
     <Card elevation={3}>
       <CardContent>
         <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Typography variant="h4" component="h2" gutterBottom>
-            How It Works
-          </Typography>
+          <Typography variant="h3" component="h1" gutterBottom sx={{ 
+                      fontWeight: 'bold',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                    }}>
+                      How It Works
+                    </Typography>
           <Typography variant="subtitle1" color="text.secondary">
             Follow these simple steps to create your QR code
           </Typography>

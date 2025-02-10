@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar/NavBar";
 import AboutUs from "./pages/AboutUS/AboutUs2";
 import Genarator from "./pages/Genarator/Genarator";
 import Home from "./pages/Home/Home";
-import Profile from "./pages/Profile/Profile";
+import Profile from "./pages/Profile/ProfileNew";
 import Steps from "./pages/Step/Step2";
 import "./app.css";
 import Users from "./pages/UserManagment/Users2";

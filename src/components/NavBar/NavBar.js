@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./navBar.css";
-import Login from "../Login/Login";
-import Signup from "../SignUp/Signup";
+import Login from "../Login/Login2";
+import Signup from "../SignUp/Signup2";
 import { getCurrentUser, logout } from "../../services/authService";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Refresh } from "@mui/icons-material";
@@ -149,9 +149,9 @@ function NavBar({ user, setUser, refresh }) {
         ☰
       </button>
       {loginModalOpen && (
-        <Login setUser={setUser} closeLoginModal={closeLoginModal} />
+        <Login setUser={setUser} closeLoginModal={closeLoginModal} open={loginModalOpen}/>
       )}
-      {signupModalOpen && <Signup closeSignupModal={closeSignupModal} />}
+      {signupModalOpen && <Signup closeSignupModal={closeSignupModal} open={signupModalOpen}/>}
     </div>
   );
 }

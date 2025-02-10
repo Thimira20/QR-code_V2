@@ -106,7 +106,7 @@ const Users = () => {
           </Box>
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 2 }}>
+        {/* <Box sx={{ display: 'flex', gap: 2 }}>
           <Paper
             sx={{
               p: '2px 4px',
@@ -128,7 +128,7 @@ const Users = () => {
           <IconButton sx={{ bgcolor: '#f5f5f5' }}>
             <SettingsIcon />
           </IconButton>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* Stats Cards */}

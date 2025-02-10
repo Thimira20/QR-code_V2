@@ -297,7 +297,7 @@ const UserTable = () => {
                   onClick={handleDeleteSelected}
                   disabled={selectedUsers.length === 0}
                 >
-                  Delete Selected
+                  {/* Delete Selected */}
                 </Button>
                 <Button
                   variant="contained"
@@ -305,7 +305,7 @@ const UserTable = () => {
                   onClick={() => setIsUpdateDialogOpen(true)}
                   disabled={selectedUsers.length === 0}
                 >
-                  Update Role
+                  {/* Update Role */}
                 </Button>
               </>
             )}
