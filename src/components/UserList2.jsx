@@ -124,7 +124,7 @@ const UserTable = () => {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:3000/api/user-data/users", {
+        const response = await axios.get("${process.env.REACT_APP_API_URL}/api/user-data/users", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         const formattedUsers = response.data.data.map(user => ({
@@ -162,7 +162,7 @@ const UserTable = () => {
     }
 
     try {
-      await axios.delete("http://localhost:3000/api/user-data/users/delete-selected", {
+      await axios.delete("${process.env.REACT_APP_API_URL}/api/user-data/users/delete-selected", {
         data: { userIds: [user.id] },
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
@@ -186,7 +186,7 @@ const UserTable = () => {
       const newRole = user.role === "user" ? "admin" : "user";
       
       await axios.put(
-        "http://localhost:3000/api/user-data/users/update-roles",
+        "${process.env.REACT_APP_API_URL}/api/user-data/users/update-roles",
         { 
           users: [{
             userId: user.id,
@@ -222,7 +222,7 @@ const UserTable = () => {
     }
 
     try {
-      await axios.delete("http://localhost:3000/api/user-data/users/delete-selected", {
+      await axios.delete("${process.env.REACT_APP_API_URL}/api/user-data/users/delete-selected", {
         data: { userIds: nonAdminUsers.map(user => user.id) },
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
@@ -246,7 +246,7 @@ const UserTable = () => {
 
     try {
       await axios.put(
-        "http://localhost:3000/api/user-data/users/update-roles",
+        "${process.env.REACT_APP_API_URL}/api/user-data/users/update-roles",
         { users: updatedRoles },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );

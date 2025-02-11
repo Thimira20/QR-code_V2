@@ -15,6 +15,8 @@ import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import axios from "axios";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import "./imageList.css"
+const dotenv = require("dotenv");
+
 
 export default function TitlebarBelowImageList({ userId, count, refresh }) {
   const [qrCodes, setQrCodes] = useState([]);
@@ -29,7 +31,7 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
   const fetchQrCodes = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/profile-data/user-qr-codes/${userId}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/user-qr-codes/${userId}`
       );
       setQrCodes(response.data);
     } catch (error) {
@@ -40,7 +42,7 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
   const deleteQrCode = async (qrCodeID) => {
     try {
       await axios.delete(
-        `http://localhost:3000/api/profile-data/deleteqr/${qrCodeID}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/deleteqr/${qrCodeID}`
       );
       setQrCodes((prev) => prev.filter((code) => code._id !== qrCodeID));
     } catch (error) {
@@ -51,7 +53,7 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
   const toggleFavorite = async (qrCodeID) => {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/profile-data/favorite/${qrCodeID}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/favorite/${qrCodeID}`
       );
       setQrCodes((prev) =>
         prev.map((code) =>
@@ -69,7 +71,7 @@ export default function TitlebarBelowImageList({ userId, count, refresh }) {
     try {
       setIsDeleting(true); // Show backdrop
       await axios.delete(
-        `http://localhost:3000/api/profile-data/deleteall/${userId}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/deleteall/${userId}`
       );
       setQrCodes([]);
       setDeleteAll(false);

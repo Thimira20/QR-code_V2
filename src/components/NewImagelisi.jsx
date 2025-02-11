@@ -72,7 +72,7 @@ const QRCodeGallery = ({ userId, refresh, count }) => {
   const fetchQrCodes = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/profile-data/user-qr-codes/${userId}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/user-qr-codes/${userId}`
       );
       setQrCodes(response.data);
     } catch (error) {
@@ -93,7 +93,7 @@ const QRCodeGallery = ({ userId, refresh, count }) => {
   const deleteQrCode = async (qrCodeId) => {
     try {
       await axios.delete(
-        `http://localhost:3000/api/profile-data/deleteqr/${qrCodeId}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/deleteqr/${qrCodeId}`
       );
       setQrCodes((prev) => prev.filter((code) => code._id !== qrCodeId));
       refresh?.();
@@ -105,7 +105,7 @@ const QRCodeGallery = ({ userId, refresh, count }) => {
   const deleteAllQrCodes = async () => {
     try {
       await axios.delete(
-        `http://localhost:3000/api/profile-data/deleteall/${userId}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/deleteall/${userId}`
       );
       setQrCodes([]);
       refresh?.();
@@ -117,7 +117,7 @@ const QRCodeGallery = ({ userId, refresh, count }) => {
   const toggleFavorite = async (qrCodeId) => {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/profile-data/favorite/${qrCodeId}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/favorite/${qrCodeId}`
       );
       setQrCodes((prev) =>
         prev.map((code) =>

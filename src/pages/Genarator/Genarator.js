@@ -189,7 +189,7 @@ useEffect(() => {
   const fetchQrCodes = async (userId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/profile-data/user-qr-codes/${userId}`
+        `${process.env.REACT_APP_API_URL}/api/profile-data/user-qr-codes/${userId}`
       );
       await setQrCodes(response.data);
      
@@ -206,7 +206,7 @@ useEffect(() => {
         .then(async (dataUrl) => {
           const qrImageBase64 = dataUrl.split(",")[1]; // Extract base64 image
           const response = await axios.post(
-            "http://localhost:3000/api/profile-data/save-qr-code",
+            "${process.env.REACT_APP_API_URL}/api/profile-data/save-qr-code",
             {
               userId: currentUser.id, // Assuming userId is passed as a prop
               qrText: value,

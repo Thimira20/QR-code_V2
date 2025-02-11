@@ -21,7 +21,7 @@ const UserTable = () => {
   // Fetch users
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/user-data/users", {
+      .get("${process.env.REACT_APP_API_URL}/api/user-data/users", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
@@ -38,7 +38,7 @@ const UserTable = () => {
   // Handle delete selected users
 //   const handleDeleteSelected = () => {
 //     axios
-//       .delete("http://localhost:3000/api/user-data/users/delete-selected", {
+//       .delete("${process.env.REACT_APP_API_URL}/api/user-data/users/delete-selected", {
 //         data: { userIds: selectedUsers },
 //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
 //       })
@@ -59,7 +59,7 @@ const handleDeleteSelected = () => {
     }
   
     axios
-      .delete("http://localhost:3000/api/user-data/users/delete-selected", {
+      .delete("${process.env.REACT_APP_API_URL}/api/user-data/users/delete-selected", {
         data: { userIds: nonAdminUserIds },
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
@@ -79,7 +79,7 @@ const handleDeleteSelected = () => {
 //     }));
 
 //     axios
-//       .put("http://localhost:3000/api/user-data/users/update-roles", { users: updatedRoles }, {
+//       .put("${process.env.REACT_APP_API_URL}/api/user-data/users/update-roles", { users: updatedRoles }, {
 //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
 //       })
 //       .then(() => {
@@ -101,7 +101,7 @@ const handleUpdateRole = () => {
     });
   
     axios
-      .put("http://localhost:3000/api/user-data/users/update-roles", 
+      .put("${process.env.REACT_APP_API_URL}/api/user-data/users/update-roles", 
         { users: updatedRoles }, 
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

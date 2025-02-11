@@ -29,7 +29,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:3000/api/user-data/users", {
+        const response = await axios.get("${process.env.REACT_APP_API_URL}/api/user-data/users", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         const formattedUsers = response.data.data.map(user => ({
