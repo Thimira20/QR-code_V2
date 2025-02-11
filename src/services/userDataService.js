@@ -2,7 +2,7 @@
 import axios from "axios";
 
 
-const API_URL = "${process.env.REACT_APP_API_URL}/api/user-data";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/user-data`;
 
 export const getUserData = async () => {
   const token = localStorage.getItem("token");

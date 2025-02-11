@@ -21,7 +21,7 @@ const UserTable = () => {
   // Fetch users
   useEffect(() => {
     axios
-      .get("${process.env.REACT_APP_API_URL}/api/user-data/users", {
+      .get(`${process.env.REACT_APP_API_URL}/api/user-data/users`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((res) => {
@@ -59,7 +59,7 @@ const handleDeleteSelected = () => {
     }
   
     axios
-      .delete("${process.env.REACT_APP_API_URL}/api/user-data/users/delete-selected", {
+      .delete(`${process.env.REACT_APP_API_URL}/api/user-data/users/delete-selected`, {
         data: { userIds: nonAdminUserIds },
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
@@ -101,7 +101,7 @@ const handleUpdateRole = () => {
     });
   
     axios
-      .put("${process.env.REACT_APP_API_URL}/api/user-data/users/update-roles", 
+      .put(`${process.env.REACT_APP_API_URL}/api/user-data/users/update-roles`, 
         { users: updatedRoles }, 
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
