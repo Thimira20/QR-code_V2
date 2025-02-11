@@ -4,7 +4,7 @@ import axios from "axios";
 const API_URL = `${process.env.REACT_APP_API_URL}/api`;
 
 export const register = async (username, email, password) => {
-  return axios.post(`${API_URL}/auth/register`, {
+  return axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
     username,
     email,
     password,
@@ -17,7 +17,7 @@ export const login = async (email, password) => {
   //   password,
   // });
   try {
-    const response = await axios.post(`${API_URL}/auth/login`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
       email,
       password,
     });
@@ -48,7 +48,7 @@ export const getCurrentUser = () => {
 
 export const getUserData = async () => {
   try {
-    const response = await axios.get(`${API_URL}//user-data`, {
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api//user-data`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`, // or wherever you store the token
       },
@@ -62,7 +62,7 @@ export const getUserData = async () => {
 
 export const createUserData = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}//user-data`, data, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api//user-data`, data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
