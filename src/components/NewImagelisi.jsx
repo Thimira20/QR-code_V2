@@ -116,8 +116,13 @@ const QRCodeGallery = ({ userId, refresh, count }) => {
 
   const toggleFavorite = async (qrCodeId) => {
     try {
-      const response = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/api/profile-data/favorite/${qrCodeId}`
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/profile-data/favorite/${qrCodeId}`,{
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
       setQrCodes((prev) =>
         prev.map((code) =>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./navBar.css";
 import Login from "../Login/Login2";
 import Signup from "../SignUp/Signup2";
@@ -8,10 +8,18 @@ import { Refresh } from "@mui/icons-material";
 import AnimatedLogo from "../AnimatedLogo";
 
 function NavBar({ user, setUser, refresh }) {
-  let currentUser = getCurrentUser();
+  //let currentUser = getCurrentUser();
+  const [currentUser, setCurrentUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Update currentUser when user prop changes
+    const userFromStorage = getCurrentUser();
+    setCurrentUser(userFromStorage);
+  }, [user]);
+
   const handleHomeClick = () => {
     document
       .getElementById("homeSection")

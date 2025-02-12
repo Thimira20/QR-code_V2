@@ -58,7 +58,7 @@ useEffect(() => {
       fetchQrCodes(currentUser.id);
   }
   notGenrated();
-}, [currentUser, props.count]);
+}, [ props.count]);
 
   function SimpleAlert(props) {
     return (
