@@ -6,8 +6,7 @@ import {
   Paper,
   Avatar,
   Divider,
-  useTheme,
-  useMediaQuery,
+  
   CircularProgress
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -38,10 +37,10 @@ const ProfileAvatar = styled(Avatar)(({ theme }) => ({
 }));
 
 const Profile = ({ refresh, count, setCount }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  //const theme = useTheme();
+ // const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const user = getCurrentUser();
-  const [userData, setUserData] = useState([]);
+  //const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +49,7 @@ const Profile = ({ refresh, count, setCount }) => {
         setLoading(true);
         const data = await getUserData();
         if (data && Array.isArray(data)) {
-          setUserData(data);
+          //setUserData(data);
         }
       } catch (error) {
         console.error('Failed to fetch user data:', error);

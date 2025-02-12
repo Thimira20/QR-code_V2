@@ -6,13 +6,13 @@ import { toPng } from "html-to-image";
 import axios from "axios";
 //import Alert from "../../components/AlertBox"
 import { getCurrentUser } from "../../services/authService";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
+//mport BookmarkIcon from "@mui/icons-material/Bookmark";
 import SaveIcon from '@mui/icons-material/Save';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-import SettingsIcon from '@mui/icons-material/Settings';
+//import SettingsIcon from '@mui/icons-material/Settings';
 import DownloadIcon from '@mui/icons-material/Download';
-import DownloadDoneOutlinedIcon from '@mui/icons-material/DownloadDoneOutlined';
-import SimpleAlert from "../../components/AlertBox";
+//import DownloadDoneOutlinedIcon from '@mui/icons-material/DownloadDoneOutlined';
+//import SimpleAlert from "../../components/AlertBox";
 import ShareIcon from '@mui/icons-material/Share';
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
@@ -39,12 +39,12 @@ function Genarator(props) {
     "purple",
     "orange",
   ];
-  const [imageAdded, setImageAdded] = useState(false);
+  //const [imageAdded, setImageAdded] = useState(false);
 
-const handleImageUpload = () => {
-    // Upload logic here
-    setImageAdded(prev => !prev); // Toggle state to trigger re-fetch
-};
+// const handleImageUpload = () => {
+//     // Upload logic here
+//     setImageAdded(prev => !prev); // Toggle state to trigger re-fetch
+// };
 
 
 
@@ -58,7 +58,7 @@ useEffect(() => {
       fetchQrCodes(currentUser.id);
   }
   notGenrated();
-}, [ props.count]);
+}, [ props.count,currentUser?.id]);
 
   function SimpleAlert(props) {
     return (
@@ -144,7 +144,7 @@ useEffect(() => {
     
           // Add QR code image to PDF (centered)
           const pdfWidth = pdf.internal.pageSize.getWidth();
-          const pdfHeight = pdf.internal.pageSize.getHeight();
+          //const pdfHeight = pdf.internal.pageSize.getHeight();
           const imageWidth = 100; // Desired width of the QR code in PDF
           const imageHeight = 100; // Desired height of the QR code in PDF
           const x = (pdfWidth - imageWidth) / 2;
@@ -220,7 +220,7 @@ useEffect(() => {
             message: response.data.message,
             severity: "success", });
           props.refresh();
-          handleImageUpload();
+          //handleImageUpload();
          
         })
         .catch((err) => {

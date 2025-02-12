@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import NavBar from "./components/NavBar/NavBar2";
 import AboutUs from "./pages/AboutUS/AboutUs2";
 import Genarator from "./pages/Genarator/Genarator";
