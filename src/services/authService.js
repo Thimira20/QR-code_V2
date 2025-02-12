@@ -1,15 +1,15 @@
 // src/services/authService.js
 import axios from "axios";
 
-const API_URL = `${process.env.REACT_APP_API_URL}/api`;
+// const API_URL = `${process.env.REACT_APP_API_URL}/api`;
 
-const api = axios.create({
-  baseURL: `${process.env.REACT_APP_API_URL}/api`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true // Important for CORS
-});
+// const api = axios.create({
+//   baseURL: `${process.env.REACT_APP_API_URL}/api`,
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   withCredentials: true // Important for CORS
+// });
 
 export const register = async (username, email, password) => {
   return axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
