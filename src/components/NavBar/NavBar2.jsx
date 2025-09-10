@@ -52,6 +52,13 @@ function NavBar({ user, setUser, refresh }) {
       const menuButton = document.querySelector('.menuButton');
       if (menuButton && window.innerWidth <= 768) {
         menuButton.style.display = 'flex';
+        
+        // Add or remove 'hidden' class based on sidebar state
+        if (sidebarOpen) {
+          menuButton.classList.add('hidden');
+        } else {
+          menuButton.classList.remove('hidden');
+        }
       }
     }
     
@@ -68,7 +75,7 @@ function NavBar({ user, setUser, refresh }) {
       clearInterval(interval);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [sidebarOpen]); // Add sidebarOpen as dependency
 
   // Separate function to safely get username
   const getDisplayName = () => {
@@ -102,9 +109,21 @@ function NavBar({ user, setUser, refresh }) {
   };
 
   const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
+    const newSidebarState = !sidebarOpen;
+    setSidebarOpen(newSidebarState);
+    
     // Add a class to the body to prevent scrolling when sidebar is open
     document.body.classList.toggle('sidebar-open');
+    
+    // Toggle menu button visibility
+    const menuButton = document.querySelector('.menuButton');
+    if (menuButton) {
+      if (newSidebarState) {
+        menuButton.classList.add('hidden');
+      } else {
+        menuButton.classList.remove('hidden');
+      }
+    }
   };
 
   const handleLoginClick = () => {

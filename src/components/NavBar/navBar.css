@@ -172,10 +172,19 @@ body.sidebar-open {
     width: 48px;
     height: 48px;
     z-index: 2000;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 255, 255, 0.2);
     align-items: center;
     justify-content: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+.menuButton.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
+    transform: scale(0.8);
 }
 
 .menuButton:hover {
@@ -196,7 +205,7 @@ body.sidebar-open {
     max-width: 300px;
     padding: 60px 20px 25px;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-    z-index: 1500;
+    z-index: 2200; /* Higher than menuButton */
     backdrop-filter: blur(15px);
     background-color: rgba(67, 0, 97, 0.9);
     transform: translateX(100%);
@@ -227,6 +236,7 @@ body.sidebar-open {
     position: absolute;
     top: 15px;
     right: 15px;
+    z-index: 2500; /* Higher than menuButton */
 }
 
 .closeButton:hover {
@@ -317,8 +327,9 @@ body.sidebar-open {
     .menuButton {
         display: flex !important;
         position: fixed;
-        opacity: 1 !important;
-        visibility: visible !important;
+        opacity: 1;
+        visibility: visible;
+        z-index: 1400; /* Lower z-index than sidebar */
     }
     .sidebar {
         display: block !important; /* Always make structure available on mobile */
@@ -327,6 +338,11 @@ body.sidebar-open {
     }
     .sidebar.open {
         transform: translateX(0); /* Slide in when open */
+    }
+    .sidebar.open ~ .menuButton {
+        opacity: 0 !important; /* Hide menu button when sidebar is open */
+        visibility: hidden !important;
+        pointer-events: none;
     }
     .navBarBox {
         padding: 10px 0;
