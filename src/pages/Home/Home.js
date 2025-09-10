@@ -28,11 +28,25 @@ function Home(props) {
     <div className="homeBox" >
       <div className="homeBoxLeft">
         <div className="leftBoxContainer">
-          {/* <p className="text">Welcome </p>
-          <p className="text">to the QR</p>
-          <p className="text">World</p> */}
-          <h1 class="title">
-            <span className="text" >Welcome</span>
+          {/* QR Pattern Background */}
+          <div className="qr-pattern">
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+            <div className="qr-block"></div>
+          </div>
+
+          {/* Main Hero Text */}
+          <h1 className="title">
+            <span className="text">Welcome</span>
             <span className="text">to the QR</span>
             <span className="text">World</span>
           </h1>
