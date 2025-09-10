@@ -4,6 +4,8 @@ import Login from "../Login/Login2";
 import Signup from "../SignUp/Signup2";
 import { getCurrentUser, logout } from "../../services/authService";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -43,6 +45,30 @@ function NavBar({ user, setUser, refresh }) {
       setLocalUser(storedUser);
     }
   }, [user]);
+  
+  // Effect to ensure menu button is always visible on mobile
+  useEffect(() => {
+    function checkMenuButtonVisibility() {
+      const menuButton = document.querySelector('.menuButton');
+      if (menuButton && window.innerWidth <= 768) {
+        menuButton.style.display = 'flex';
+      }
+    }
+    
+    // Run on mount and when window is resized
+    checkMenuButtonVisibility();
+    window.addEventListener('resize', checkMenuButtonVisibility);
+    
+    // Run a few times to catch any delayed rendering
+    const interval = setInterval(checkMenuButtonVisibility, 300);
+    const timeout = setTimeout(() => clearInterval(interval), 3000);
+    
+    return () => {
+      window.removeEventListener('resize', checkMenuButtonVisibility);
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   // Separate function to safely get username
   const getDisplayName = () => {
@@ -77,6 +103,8 @@ function NavBar({ user, setUser, refresh }) {
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+    // Add a class to the body to prevent scrolling when sidebar is open
+    document.body.classList.toggle('sidebar-open');
   };
 
   const handleLoginClick = () => {
@@ -105,10 +133,13 @@ function NavBar({ user, setUser, refresh }) {
   const isUserLoggedIn = Boolean(user || localUser);
   const displayName = getDisplayName();
 
+
+
   return (
     <ErrorBoundary>
       <div>
-        <div className={`navBarBox ${sidebarOpen ? "hideNavBar" : ""}`}>
+        {sidebarOpen && <div className="sidebar-overlay" onClick={toggleSidebar}></div>}
+        <div className={`navBarBox`}>
           <div className="navBarBoxLeft">
             <p className="easy">easy</p>
             <p className="qr">QR</p>
@@ -153,7 +184,7 @@ function NavBar({ user, setUser, refresh }) {
         {/* Sidebar with the same logic */}
         <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <button className="closeButton" onClick={toggleSidebar}>
-            X
+            <CloseIcon />
           </button>
           <button className="sidebarButton" onClick={handleHomeClick}>
             Home
@@ -189,7 +220,7 @@ function NavBar({ user, setUser, refresh }) {
         </div>
 
         <button className="menuButton" onClick={toggleSidebar}>
-          ☰
+          <MenuIcon />
         </button>
 
         {loginModalOpen && (
