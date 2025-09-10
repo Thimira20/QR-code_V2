@@ -1,8 +1,6 @@
 /* The Modal (background) */
-
 .modal {
     display: block;
-    /* Changed to block */
     position: fixed;
     z-index: 1021;
     left: 0;
@@ -10,50 +8,59 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    backdrop-filter: blur(10px);
     padding-top: 0;
-    /* Removed padding */
+    animation: modalFadeIn 0.3s ease-out;
 }
 
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 /* Modal Content/Box */
-
 .modal-content {
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 0 auto;
-    /* Center horizontally */
-    border: 1px solid #888;
-    width: 80%;
-    /* Adjust the width as needed */
+    width: 90%;
     max-width: 500px;
-    /* Optional: set a max width */
-    padding: 20px;
-    /* Added padding for inner spacing */
+    padding: 30px;
     position: relative;
     top: 50%;
-    /* Position vertically centered */
     transform: translateY(-50%);
-    /* Adjust vertical position */
-    margin-top: 10%;
+    color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-
 /* The Close Button */
-
 .close {
     position: absolute;
-    right: 25px;
-    top: 25px;
-    color: #000;
-    font-size: 35px;
+    right: 20px;
+    top: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 28px;
     font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .close:hover,
 .close:focus {
-    color: red;
+    color: #ff4757;
+    background: rgba(255, 71, 87, 0.2);
+    transform: rotate(90deg);
     cursor: pointer;
 }
 
@@ -93,149 +100,311 @@
 }
 
 
-/* Input Fields */
-
-
-/* input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-  background-color: #ddd;
-  outline: none;
-} */
-
-.inputPassword {
-    width: auto;
-    padding: 10px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.inputPassword:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
+/* Enhanced Input Fields */
+.inputPassword,
 .inputUsername {
-    width: auto;
-    padding: 10px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.inputUsername:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-
-/* Buttons */
-
-
-/* 
-button {
-  background-color: #04aa6d;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-} */
-
-button:hover {
-    opacity: 1;
-}
-
-.loginBtn {
-    background-color: #04aa6d;
+    width: 100%;
+    padding: 18px 20px;
+    margin: 8px 0 20px 0;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
     color: white;
-    padding: 10px 20px;
-    margin: 8px 0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-sizing: border-box;
+}
+
+.inputPassword::placeholder,
+.inputUsername::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.inputPassword:focus,
+.inputUsername:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(102, 126, 234, 0.6);
+    outline: none;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Enhanced Labels */
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Enhanced Buttons */
+.loginBtn {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+    padding: 18px 30px;
+    margin: 20px 0 10px 0;
     border: none;
     cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    width: auto;
-    opacity: 0.9;
-    border-radius: 10px;
-    font-weight: bold;
+    width: 100%;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.loginBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.loginBtn:hover::before {
+    left: 100%;
 }
 
 .loginBtn:hover {
-    opacity: 1;
-    background-color: #fcfcfc;
-    color: #04aa6d;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(39, 174, 96, 0.4);
+}
+
+.loginBtn:active {
+    transform: translateY(-1px);
 }
 
 .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    margin: 8px 0;
-    background-color: #c8352a;
+    width: 100%;
+    padding: 15px 25px;
+    margin: 10px 0;
+    background: rgba(255, 71, 87, 0.2);
+    border: 2px solid rgba(255, 71, 87, 0.3);
     cursor: pointer;
     color: white;
-    opacity: 0.9;
-    border-radius: 10px;
-    justify-content: center;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .cancelbtn:hover {
-    opacity: 1;
-    background-color: #eadfdf;
-    color: #c8352a;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    background: rgba(255, 71, 87, 0.3);
+    border-color: rgba(255, 71, 87, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 71, 87, 0.3);
 }
 
 
-/* Labels */
-
-.label {
-    font-size: 16px;
-    margin-bottom: 10px;
-    display: block;
-    text-align: left;
-}
-
-
-/* Avatar image */
-
+/* Signup icon container and animations */
 .imgcontainer {
     text-align: center;
-    margin: 24px 0 12px 0;
+    margin: 0 0 30px 0;
     position: relative;
 }
 
-img.avatar {
-    width: 40%;
+.signup-icon {
+    display: inline-block;
+    padding: 25px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
     border-radius: 50%;
+    box-shadow: 
+        0 15px 35px rgba(39, 174, 96, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: signupIconPulse 3s ease-in-out infinite;
+    transition: all 0.4s ease;
+    position: relative;
 }
 
+.signup-icon::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, #27ae60, #2ecc71, #27ae60);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-/* Extra styles for the container (extra spacing) */
+.signup-icon:hover::before {
+    opacity: 1;
+    animation: rotate 2s linear infinite;
+}
 
+.signup-icon:hover {
+    transform: scale(1.1) rotate(-10deg);
+    box-shadow: 
+        0 20px 50px rgba(39, 174, 96, 0.5),
+        0 0 0 10px rgba(39, 174, 96, 0.1);
+}
+
+.animated-signup-icon {
+    color: white;
+    animation: iconFloat 4s ease-in-out infinite;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
+}
+
+.animated-signup-icon:hover {
+    animation: iconGlow 0.6s ease-in-out;
+}
+
+.user-head {
+    animation: headBounce 3s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+.user-body {
+    animation: bodySlide 3s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+
+.plus-circle {
+    animation: plusPulse 2s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.plus-sign {
+    animation: plusGlow 2s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+/* Enhanced Animations */
+@keyframes signupIconPulse {
+    0%, 100% {
+        box-shadow: 
+            0 15px 35px rgba(39, 174, 96, 0.4),
+            0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 
+            0 20px 50px rgba(39, 174, 96, 0.5),
+            0 10px 25px rgba(0, 0, 0, 0.15);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-8px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes iconGlow {
+    0%, 100% {
+        filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
+    }
+}
+
+@keyframes headBounce {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.1) translateY(-1px);
+    }
+}
+
+@keyframes bodySlide {
+    0%, 100% {
+        stroke-dasharray: 20, 100;
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    50% {
+        stroke-dasharray: 40, 100;
+        stroke-dashoffset: -30;
+        opacity: 0.8;
+    }
+}
+
+@keyframes plusPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes plusGlow {
+    0%, 100% {
+        stroke-width: 2;
+        opacity: 1;
+    }
+    50% {
+        stroke-width: 3;
+        opacity: 0.7;
+    }
+}
+
+/* Container styling */
 .container {
-    padding: 16px;
+    padding: 0;
 }
 
 .container::after {
     content: "";
     display: table;
     clear: both;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        padding: 25px 20px;
+        margin: 20px auto;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .signup-icon {
+        padding: 20px;
+    }
+    
+    .inputPassword,
+    .inputUsername {
+        padding: 15px 18px;
+    }
 }
