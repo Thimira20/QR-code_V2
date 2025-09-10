@@ -42,9 +42,13 @@ function NavBar({ user, setUser, refresh }) {
     } else {
       // If no user prop, try to get from localStorage
       const storedUser = getCurrentUser();
-      setLocalUser(storedUser);
+      if (storedUser) {
+        setLocalUser(storedUser);
+        // Important: also update the App-level user state
+        setUser(storedUser);
+      }
     }
-  }, [user]);
+  }, [user, setUser]);
   
   // Effect to ensure menu button is always visible on mobile
   useEffect(() => {

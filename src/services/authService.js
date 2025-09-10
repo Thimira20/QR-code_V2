@@ -94,11 +94,30 @@ export const logout = () => {
 export const getCurrentUser = () => {
   try {
     const userString = localStorage.getItem("user");
-    return userString ? JSON.parse(userString) : null;
+    const token = localStorage.getItem("token");
+    
+    // Make sure we have both user data and token
+    if (!userString || !token) {
+      return null;
+    }
+    
+    const userData = JSON.parse(userString);
+    
+    // Check token validity and expiration
+    if (token && token.split('.').length === 3 && !isTokenExpired(token)) {
+      return userData;
+    } else {
+      // Invalid or expired token, clear storage
+      console.log("Token invalid or expired, clearing session");
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      return null;
+    }
   } catch (error) {
     console.error("Error parsing user data:", error);
     // If there's an error parsing the data, clear it
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     return null;
   }
 };
@@ -112,6 +131,28 @@ export const setCurrentUser = (userData) => {
     }
   } catch (error) {
     console.error("Error saving user data:", error);
+  }
+};
+
+// Helper function to check if JWT token is expired
+export const isTokenExpired = (token) => {
+  if (!token) return true;
+  
+  try {
+    // Get the payload part of the JWT
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const payload = JSON.parse(window.atob(base64));
+    
+    // Check if token has expiration claim
+    if (!payload.exp) return false;
+    
+    // Convert exp to milliseconds and compare with current time
+    const expiry = payload.exp * 1000;
+    return Date.now() >= expiry;
+  } catch (error) {
+    console.error("Error checking token expiration:", error);
+    return true; // If we can't verify, assume it's expired
   }
 };
 
