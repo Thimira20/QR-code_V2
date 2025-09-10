@@ -27,7 +27,7 @@ import './enhancedStep.css';
 const MainCard = styled(Card)(({ theme }) => ({
   background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
   borderRadius: '24px',
-  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0 20px 60px rgba(99, 102, 241, 0.15)',
   overflow: 'hidden',
   position: 'relative',
   '&::before': {
@@ -37,7 +37,7 @@ const MainCard = styled(Card)(({ theme }) => ({
     left: 0,
     right: 0,
     height: '4px',
-    background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+    background: 'linear-gradient(90deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%)',
   }
 }));
 
@@ -52,7 +52,7 @@ const StepItem = styled(Paper)(({ theme, active }) => ({
   border: active ? `2px solid ${theme.palette.primary.main}` : '2px solid transparent',
   borderRadius: '16px',
   background: active 
-    ? 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)'
+    ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.12) 50%, rgba(236, 72, 153, 0.08) 100%)'
     : 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
   position: 'relative',
   overflow: 'hidden',
@@ -63,12 +63,12 @@ const StepItem = styled(Paper)(({ theme, active }) => ({
     left: '-100%',
     width: '100%',
     height: '100%',
-    background: 'linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent)',
+    background: 'linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), transparent)',
     transition: 'left 0.5s',
   },
   '&:hover': {
     transform: 'translateX(12px) translateY(-4px)',
-    boxShadow: '0 15px 40px rgba(102, 126, 234, 0.2)',
+    boxShadow: '0 15px 40px rgba(99, 102, 241, 0.2)',
     '&::before': {
       left: '100%',
     }
@@ -80,7 +80,7 @@ const StepNumber = styled(Box)(({ theme, active }) => ({
   height: 48,
   borderRadius: '50%',
   background: active 
-    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    ? 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%)'
     : 'linear-gradient(135deg, #e3e8f4 0%, #d1d9e6 100%)',
   color: active ? '#ffffff' : theme.palette.text.secondary,
   display: 'flex',
@@ -91,8 +91,8 @@ const StepNumber = styled(Box)(({ theme, active }) => ({
   marginRight: theme.spacing(2),
   transition: 'all 0.3s ease',
   boxShadow: active 
-    ? '0 8px 25px rgba(102, 126, 234, 0.3)'
-    : '0 4px 15px rgba(0, 0, 0, 0.1)',
+    ? '0 8px 25px rgba(99, 102, 241, 0.35)'
+    : '0 4px 15px rgba(0, 0, 0, 0.06)',
   position: 'relative',
   '&::after': active ? {
     content: '""',
@@ -100,7 +100,7 @@ const StepNumber = styled(Box)(({ theme, active }) => ({
     width: '100%',
     height: '100%',
     borderRadius: '50%',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%)',
     opacity: 0.3,
     animation: 'pulse 2s ease-in-out infinite',
   } : {}
@@ -109,13 +109,14 @@ const StepNumber = styled(Box)(({ theme, active }) => ({
 const ImageContainer = styled(Box)(({ theme }) => ({
   height: 450,
   position: 'relative',
-  background: 'linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%)',
+  background: 'linear-gradient(145deg, #f8f9fa 0%, #f0f1f8 100%)',
   borderRadius: '20px',
   overflow: 'hidden',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  border: '1px solid rgba(102, 126, 234, 0.1)',
+  border: '1px solid rgba(99, 102, 241, 0.1)',
+  boxShadow: '0 10px 30px rgba(99, 102, 241, 0.08)',
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -123,7 +124,7 @@ const ImageContainer = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'linear-gradient(45deg, transparent 49%, rgba(102, 126, 234, 0.03) 50%, transparent 51%)',
+    background: 'linear-gradient(45deg, transparent 49%, rgba(99, 102, 241, 0.04) 50%, transparent 51%)',
     backgroundSize: '20px 20px',
   }
 }));
@@ -145,14 +146,15 @@ const AnimatedArrow = styled(IconButton)(({ active }) => ({
   transform: active ? 'translateX(8px) scale(1.1)' : 'translateX(0) scale(1)',
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   background: active 
-    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    ? 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%)'
     : 'transparent',
   color: active ? '#ffffff' : 'inherit',
   '&:hover': {
     background: active 
-      ? 'linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%)'
-      : 'rgba(102, 126, 234, 0.1)',
+      ? 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #DB2777 100%)'
+      : 'rgba(99, 102, 241, 0.12)',
     transform: 'translateX(12px) scale(1.15)',
+    boxShadow: active ? '0 6px 15px rgba(99, 102, 241, 0.3)' : 'none',
   }
 }));
 
@@ -203,7 +205,7 @@ function Steps() {
               gutterBottom 
               sx={{ 
                 fontWeight: 'bold',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
