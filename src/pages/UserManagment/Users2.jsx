@@ -1,29 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box,
-  Paper,
   Typography,
-  IconButton,
-  InputBase,
-  Grid,
-  Card,
-  CardContent,
-  CircularProgress
+  CircularProgress,
+  Fade
 } from '@mui/material';
 import {
-  Search as SearchIcon,
-  Settings as SettingsIcon,
   People as PeopleIcon,
   PersonAdd as PersonAddIcon,
-  Group as GroupIcon
+  Group as GroupIcon,
+  BarChart as BarChartIcon
 } from '@mui/icons-material';
 import axios from 'axios';
 import UserTable from '../../components/UserList2';
+import './users.css';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  // Trigger animations when component mounts
+  useEffect(() => {
+    // Add a slight delay before setting animation complete
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 800);
+    
+    // Apply animation class to body
+    document.body.classList.add('user-management-active');
+    
+    return () => {
+      clearTimeout(timer);
+      document.body.classList.remove('user-management-active');
+    };
+  }, []);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -36,11 +47,19 @@ const Users = () => {
           ...user,
           id: user._id,
         }));
-        setUsers(formattedUsers);
+        
+        // Stagger the animations for a more polished feel
+        setTimeout(() => {
+          setUsers(formattedUsers);
+          setTimeout(() => {
+            setLoading(false);
+          }, 300);
+        }, 600);
       } catch (err) {
         setError("Failed to fetch users");
-      } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 600);
       }
     };
 
@@ -80,135 +99,87 @@ const Users = () => {
   const stats = calculateStats();
 
   return (
-    <Box sx={{ p: 3, bgcolor: '#f5f5f5', minHeight: '100vh' }}>
+    <div className={`user ${animationComplete ? 'animation-complete' : ''}`}>
       {/* Header Section */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Paper
-            elevation={0}
-            sx={{
-              p: 2,
-              bgcolor: '#e3f2fd',
-              borderRadius: 10,
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <PeopleIcon sx={{ color: '#1976d2' }} />
-          </Paper>
-          <Box>
-            <Typography variant="h4" fontWeight="bold">
-              User Management
-            </Typography>
-            <Typography variant="body3" color="text.secondary">
-              Manage and monitor user accounts
-            </Typography>
-          </Box>
-        </Box>
+      <div className="userTop">
+        <h1 className="userTopic">User Management</h1>
+      </div>
 
-        {/* <Box sx={{ display: 'flex', gap: 2 }}>
-          <Paper
-            sx={{
-              p: '2px 4px',
-              display: 'flex',
-              alignItems: 'center',
-              width: 300,
-              borderRadius: 2
-            }}
-          >
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search users..."
-            />
-            <IconButton type="button" sx={{ p: '10px' }}>
-              <SearchIcon />
-            </IconButton>
-          </Paper>
-
-          <IconButton sx={{ bgcolor: '#f5f5f5' }}>
-            <SettingsIcon />
-          </IconButton>
-        </Box> */}
-      </Box>
-
-      {/* Stats Cards */}
-      <Grid container spacing={3} sx={{ mb: 3 }}>
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardContent>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Box>
-                  <Typography color="text.secondary" variant="body2">
-                    Total Users
-                  </Typography>
+      <div className="userBottom">
+        {/* Stats Cards */}
+        <div className="stats-container">
+          <Fade in={true} timeout={800} style={{ transitionDelay: '100ms' }}>
+            <div className="stat-card stat-card-1">
+              <div className="stat-content">
+                <div className="stat-text">
+                  <h4>Total Users</h4>
                   {loading ? (
-                    <CircularProgress size={20} />
+                    <CircularProgress size={20} className="pulse-animation" />
                   ) : (
-                    <Typography variant="h4" sx={{ mt: 1, fontWeight: 'bold' }}>
-                      {stats.totalUsers}
-                    </Typography>
+                    <p className="animate-number">{stats.totalUsers}</p>
                   )}
-                </Box>
-                <GroupIcon sx={{ color: '#1976d2', fontSize: 40 }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+                </div>
+                <div className="stat-icon">
+                  <GroupIcon />
+                </div>
+              </div>
+            </div>
+          </Fade>
 
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardContent>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Box>
-                  <Typography color="text.secondary" variant="body2">
-                    Active Users (Last 30m)
-                  </Typography>
+          <Fade in={true} timeout={800} style={{ transitionDelay: '300ms' }}>
+            <div className="stat-card stat-card-2">
+              <div className="stat-content">
+                <div className="stat-text">
+                  <h4>Active Users (Last 30m)</h4>
                   {loading ? (
-                    <CircularProgress size={20} />
+                    <CircularProgress size={20} className="pulse-animation" />
                   ) : (
-                    <Typography variant="h4" sx={{ mt: 1, fontWeight: 'bold' }}>
-                      {stats.activeUsers}
-                    </Typography>
+                    <p className="animate-number">{stats.activeUsers}</p>
                   )}
-                </Box>
-                <PeopleIcon sx={{ color: '#2e7d32', fontSize: 40 }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+                </div>
+                <div className="stat-icon">
+                  <PeopleIcon />
+                </div>
+              </div>
+            </div>
+          </Fade>
 
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardContent>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Box>
-                  <Typography color="text.secondary" variant="body2">
-                    New Users (This Month)
-                  </Typography>
+          <Fade in={true} timeout={800} style={{ transitionDelay: '500ms' }}>
+            <div className="stat-card stat-card-3">
+              <div className="stat-content">
+                <div className="stat-text">
+                  <h4>New Users (This Month)</h4>
                   {loading ? (
-                    <CircularProgress size={20} />
+                    <CircularProgress size={20} className="pulse-animation" />
                   ) : (
-                    <Typography variant="h4" sx={{ mt: 1, fontWeight: 'bold' }}>
-                      {stats.newUsers}
-                    </Typography>
+                    <p className="animate-number">{stats.newUsers}</p>
                   )}
-                </Box>
-                <PersonAddIcon sx={{ color: '#ed6c02', fontSize: 40 }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+                </div>
+                <div className="stat-icon">
+                  <PersonAddIcon />
+                </div>
+              </div>
+            </div>
+          </Fade>
+        </div>
 
-      {/* Main Content */}
-      <Paper sx={{ p: 3, borderRadius: 2 }}>
-        {error ? (
-          <Typography color="error">{error}</Typography>
-        ) : (
-          <UserTable />
-        )}
-      </Paper>
-    </Box>
+        {/* Main Content */}
+        <Fade in={true} timeout={1000} style={{ transitionDelay: '700ms' }}>
+          <div className="table-container">
+            <h2 className="table-title">User List</h2>
+            {error ? (
+              <Typography color="error">{error}</Typography>
+            ) : loading ? (
+              <div className="loading-container">
+                <CircularProgress className="pulse-animation" />
+              </div>
+            ) : (
+              <UserTable />
+            )}
+          </div>
+        </Fade>
+      </div>
+    </div>
   );
 };
 

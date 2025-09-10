@@ -1,0 +1,230 @@
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(106, 17, 203, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(106, 17, 203, 0);
+  }
+}
+
+/* Improved Card Styling */
+.MuiCard-root.user-table-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.MuiCard-root.user-table-card:hover {
+  box-shadow: 0 12px 48px rgba(106, 17, 203, 0.15) !important;
+  animation: pulseGlow 3s infinite;
+}
+
+/* Header and Controls */
+.user-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(106, 17, 203, 0.1);
+  background: linear-gradient(90deg, rgba(106, 17, 203, 0.02), rgba(37, 117, 252, 0.05));
+}
+
+.user-table-title {
+  font-weight: 600;
+  color: #6a11cb;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-table-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Search Field */
+.search-field .MuiOutlinedInput-root {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.search-field .MuiOutlinedInput-root:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.search-field .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
+}
+
+/* Action Buttons */
+.action-button {
+  border-radius: 20px !important;
+  padding: 6px 16px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+.refresh-button {
+  background: rgba(37, 117, 252, 0.1) !important;
+  color: #2575fc !important;
+}
+
+.refresh-button:hover {
+  background: rgba(37, 117, 252, 0.2) !important;
+}
+
+.delete-button {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+.delete-button:hover {
+  background: rgba(239, 68, 68, 0.2) !important;
+}
+
+.role-button {
+  background: rgba(106, 17, 203, 0.1) !important;
+  color: #6a11cb !important;
+}
+
+.role-button:hover {
+  background: rgba(106, 17, 203, 0.2) !important;
+}
+
+/* Table Animations */
+.data-grid-container {
+  animation: slideUp 0.5s ease-out;
+}
+
+.MuiDataGrid-row {
+  animation: fadeIn 0.3s ease-out;
+  transition: all 0.3s ease !important;
+}
+
+.MuiDataGrid-row:hover {
+  background-color: rgba(106, 17, 203, 0.05) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Skeleton Loading Animation */
+.loading-skeleton-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.skeleton-row {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-row::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmerEffect 2s infinite;
+  transform: translateX(-100%);
+}
+
+.skeleton-text, .skeleton-checkbox {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-text::after, .skeleton-checkbox::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmerEffect 2s infinite;
+  transform: translateX(-100%);
+}
+
+@keyframes shimmerEffect {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Dialog Styling */
+.MuiDialog-paper {
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  overflow: hidden !important;
+}
+
+.MuiDialogTitle-root {
+  background: linear-gradient(90deg, rgba(106, 17, 203, 0.05), rgba(37, 117, 252, 0.08));
+  color: #6a11cb;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .user-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .user-table-controls {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .search-field {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}

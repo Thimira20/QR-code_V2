@@ -15,14 +15,20 @@ import {
   DialogActions,
   Chip,
   Avatar,
+  Tooltip,
+  Fade,
+  Zoom
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from "axios";
 import { getCurrentUser } from "../services/authService";
+import './userList.css';
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -272,66 +278,149 @@ const UserTable = () => {
     user.role.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return (
-    <Card sx={{ width: '90%', boxShadow: 3 }}>
-      <CardContent>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
-          <Typography variant="h6">User Management</Typography>
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-            <TextField
-              size="small"
-              placeholder="Search users..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              InputProps={{
-                startAdornment: <SearchIcon color="action" />,
-              }}
-            />
-            
-            {currentUser?.role === "super_admin" && (
-              <>
-                <Button
-                  variant="contained"
-                  color="error"
-                  startIcon={<DeleteIcon />}
-                  onClick={handleDeleteSelected}
-                  disabled={selectedUsers.length === 0}
-                >
-                  {/* Delete Selected */}
-                </Button>
-                <Button
-                  variant="contained"
-                  startIcon={<SupervisorAccountIcon />}
-                  onClick={() => setIsUpdateDialogOpen(true)}
-                  disabled={selectedUsers.length === 0}
-                >
-                  {/* Update Role */}
-                </Button>
-              </>
-            )}
-          </div>
-        </div>
+  const handleRefresh = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user-data/users`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      const formattedUsers = response.data.data.map(user => ({
+        ...user,
+        id: user._id,
+      }));
+      setUsers(formattedUsers);
+      setSearchQuery("");
+      setSelectedUsers([]);
+    } catch (err) {
+      setError("Failed to fetch users");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        <div style={{ height: 500, width: '100%' }}>
+  return (
+    <Card className="user-table-card">
+      <div className="user-table-header">
+        <Typography className="user-table-title">
+          <SupervisorAccountIcon fontSize="small" />
+          User Directory
+        </Typography>
+        <div className="user-table-controls">
+          <TextField
+            className="search-field"
+            size="small"
+            placeholder="Search users..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            InputProps={{
+              startAdornment: <SearchIcon color="action" fontSize="small" />,
+            }}
+          />
+          
+          <Tooltip title="Refresh data">
+            <IconButton 
+              className="action-button refresh-button"
+              onClick={handleRefresh}
+            >
+              <RefreshIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          
+          {currentUser?.role === "super_admin" && (
+            <>
+              <Tooltip title="Delete selected users">
+                <span>
+                  <Button
+                    className="action-button delete-button"
+                    startIcon={<DeleteIcon fontSize="small" />}
+                    onClick={handleDeleteSelected}
+                    disabled={selectedUsers.length === 0}
+                    variant="text"
+                    size="small"
+                  >
+                    Delete
+                  </Button>
+                </span>
+              </Tooltip>
+              
+              <Tooltip title="Change roles for selected users">
+                <span>
+                  <Button
+                    className="action-button role-button"
+                    startIcon={<SupervisorAccountIcon fontSize="small" />}
+                    onClick={() => setIsUpdateDialogOpen(true)}
+                    disabled={selectedUsers.length === 0}
+                    variant="text"
+                    size="small"
+                  >
+                    Change Role
+                  </Button>
+                </span>
+              </Tooltip>
+            </>
+          )}
+        </div>
+      </div>
+
+      <CardContent>
+        <div className="data-grid-container" style={{ height: 500, width: '100%' }}>
           {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-              <CircularProgress />
+            <div className="loading-skeleton-container" style={{ height: '100%', padding: '20px 0' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                  <div className="skeleton-checkbox" style={{ width: '24px', height: '24px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                  <div className="skeleton-text" style={{ width: '100px', height: '24px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                </div>
+                <div className="skeleton-text" style={{ width: '80px', height: '24px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+              </div>
+              
+              {[...Array(5)].map((_, index) => (
+                <div key={index} className="skeleton-row" style={{ 
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '0 16px',
+                  height: '60px',
+                  marginBottom: '8px',
+                  background: 'rgba(106, 17, 203, 0.05)',
+                  borderRadius: '8px',
+                  gap: '12px',
+                  animationDelay: `${index * 0.1}s`
+                }}>
+                  <div style={{ width: '24px', height: '24px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                  <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(106, 17, 203, 0.15)' }}></div>
+                  <div style={{ width: '180px', height: '20px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                  <div style={{ width: '100px', height: '20px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                  <div style={{ width: '120px', height: '20px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                  <div style={{ marginLeft: 'auto', width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                </div>
+              ))}
+              
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px', gap: '16px', alignItems: 'center' }}>
+                <div className="skeleton-text" style={{ width: '100px', height: '24px', borderRadius: '4px', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                <div className="skeleton-text" style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+                <div className="skeleton-text" style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(106, 17, 203, 0.1)' }}></div>
+              </div>
             </div>
           ) : error ? (
             <Typography color="error" align="center">{error}</Typography>
           ) : (
-            <DataGrid
-              rows={filteredUsers}
-              columns={columns}
-              checkboxSelection
-              disableRowSelectionOnClick
-              getRowId={(row) => row._id}
-              onRowSelectionModelChange={setSelectedUsers}
-              pageSizeOptions={[10, 25, 50]}
-              initialState={{
-                pagination: { paginationModel: { pageSize: 10 } },
-              }}
-            />
+            <Fade in={!loading} timeout={800}>
+              <div style={{ height: '100%', width: '100%' }}>
+                <DataGrid
+                  rows={filteredUsers}
+                  columns={columns}
+                  checkboxSelection
+                  disableRowSelectionOnClick
+                  getRowId={(row) => row._id}
+                  onRowSelectionModelChange={setSelectedUsers}
+                  pageSizeOptions={[10, 25, 50]}
+                  initialState={{
+                    pagination: { paginationModel: { pageSize: 10 } },
+                  }}
+                  className="custom-data-grid"
+                />
+              </div>
+            </Fade>
           )}
         </div>
       </CardContent>
@@ -341,18 +430,51 @@ const UserTable = () => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
+        TransitionComponent={Fade}
+        elevation={3}
+        PaperProps={{
+          sx: { 
+            borderRadius: 2, 
+            minWidth: 180,
+            padding: '4px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            '& .MuiMenuItem-root': {
+              borderRadius: 1,
+              margin: '2px 0',
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                backgroundColor: 'rgba(106, 17, 203, 0.08)'
+              }
+            }
+          }
+        }}
       >
         <MenuItem 
           onClick={() => selectedUser && handleSingleRoleUpdate(selectedUser)}
           disabled={selectedUser?.role === "super_admin"}
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 1.5,
+            color: '#6a11cb'
+          }}
         >
+          <SupervisorAccountIcon fontSize="small" />
           Change Role
         </MenuItem>
         <MenuItem 
           onClick={() => selectedUser && handleSingleDelete(selectedUser)}
           disabled={selectedUser?.role === "super_admin" || selectedUser?.role === "admin"}
-          sx={{ color: 'error.main' }}
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 1.5,
+            color: '#ef4444'
+          }}
         >
+          <DeleteIcon fontSize="small" />
           Delete User
         </MenuItem>
       </Menu>
@@ -361,19 +483,69 @@ const UserTable = () => {
       <Dialog
         open={isUpdateDialogOpen}
         onClose={() => setIsUpdateDialogOpen(false)}
+        TransitionComponent={Zoom}
+        PaperProps={{
+          sx: { 
+            borderRadius: 3,
+            overflow: 'hidden',
+            background: 'rgba(255, 255, 255, 0.98)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.12)'
+          }
+        }}
+        maxWidth="xs"
+        fullWidth
       >
-        <DialogTitle>Update User Roles</DialogTitle>
-        <DialogContent>
-          <Typography>
-            Are you sure you want to update roles for {selectedUsers.length} selected users?
+        <DialogTitle sx={{ 
+          background: 'linear-gradient(90deg, rgba(106, 17, 203, 0.05), rgba(37, 117, 252, 0.08))',
+          borderBottom: '1px solid rgba(106, 17, 203, 0.1)',
+          color: '#6a11cb',
+          fontSize: '1.1rem',
+          fontWeight: 600
+        }}>
+          Update User Roles
+        </DialogTitle>
+        
+        <DialogContent sx={{ py: 3, px: 3 }}>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Are you sure you want to update roles for <strong>{selectedUsers.length}</strong> selected users?
           </Typography>
-          <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-            This will toggle their roles between user and admin.
+          
+          <Typography variant="body2" color="text.secondary" sx={{ 
+            p: 2, 
+            bgcolor: 'rgba(106, 17, 203, 0.05)', 
+            borderRadius: 2,
+            border: '1px solid rgba(106, 17, 203, 0.1)'
+          }}>
+            This action will toggle roles between user and admin. Users will become admins, and admins will become regular users.
           </Typography>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsUpdateDialogOpen(false)}>Cancel</Button>
-          <Button onClick={handleUpdateRole} variant="contained">
+        
+        <DialogActions sx={{ px: 3, py: 2, borderTop: '1px solid rgba(106, 17, 203, 0.05)' }}>
+          <Button 
+            onClick={() => setIsUpdateDialogOpen(false)}
+            sx={{ 
+              color: 'text.secondary',
+              borderRadius: 2,
+              textTransform: 'none'
+            }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleUpdateRole} 
+            variant="contained"
+            sx={{ 
+              borderRadius: 2,
+              background: 'linear-gradient(90deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9))',
+              textTransform: 'none',
+              boxShadow: '0 4px 12px rgba(106, 17, 203, 0.15)',
+              '&:hover': {
+                background: 'linear-gradient(90deg, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))',
+                boxShadow: '0 6px 16px rgba(106, 17, 203, 0.25)',
+              }
+            }}
+          >
             Confirm Update
           </Button>
         </DialogActions>
