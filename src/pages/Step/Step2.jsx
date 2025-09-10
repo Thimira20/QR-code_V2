@@ -8,7 +8,6 @@ import {
   IconButton,
   useTheme,
   styled,
-  CircularProgress,
   Fade,
   Slide,
   Zoom,
@@ -309,27 +308,43 @@ function Steps() {
                 </Fade>
               ))}
               
-              {/* Enhanced Loading Indicator */}
+              {/* Dynamic Status Indicator */}
               <Box
                 sx={{
                   position: 'absolute',
                   bottom: 20,
                   right: 20,
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  borderRadius: '50%',
-                  p: 1,
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  borderRadius: '12px',
+                  px: 2,
+                  py: 1,
                   backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(102, 126, 234, 0.2)'
+                  border: '1px solid rgba(102, 126, 234, 0.2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  transition: 'all 0.3s ease'
                 }}
               >
-                <CircularProgress
-                  size={20}
-                  thickness={4}
+                <Box
                   sx={{
-                    color: steps[activeStep]?.color || theme.palette.primary.main,
-                    animation: 'spin 2s linear infinite'
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: steps[activeStep]?.color || theme.palette.primary.main,
+                    animation: 'pulse 2s ease-in-out infinite'
                   }}
                 />
+                <Typography 
+                  variant="caption" 
+                  sx={{ 
+                    fontWeight: 600,
+                    color: 'text.primary',
+                    fontSize: '0.75rem'
+                  }}
+                >
+                  Preview
+                </Typography>
               </Box>
 
               {/* Step Progress Indicator */}
@@ -363,6 +378,40 @@ function Steps() {
                   }}
                 >
                   Step {activeStep + 1} of {steps.length}
+                </Typography>
+              </Box>
+
+              {/* Floating Action Hint */}
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: 20,
+                  left: 20,
+                  background: `linear-gradient(135deg, ${steps[activeStep]?.color}20, ${steps[activeStep]?.color}10)`,
+                  borderRadius: '16px',
+                  px: 2,
+                  py: 1,
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${steps[activeStep]?.color}40`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  opacity: 0.8,
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <Box sx={{ color: 'inherit' }}>
+                  {steps[activeStep]?.icon}
+                </Box>
+                <Typography 
+                  variant="caption" 
+                  sx={{ 
+                    fontWeight: 600,
+                    color: steps[activeStep]?.color,
+                    fontSize: '0.75rem'
+                  }}
+                >
+                  {steps[activeStep]?.title.split(' ')[0]}
                 </Typography>
               </Box>
             </ImageContainer>
