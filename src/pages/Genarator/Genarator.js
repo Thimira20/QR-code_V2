@@ -12,9 +12,12 @@ import ShareIcon from '@mui/icons-material/Share';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import PaletteIcon from '@mui/icons-material/Palette';
-import Alert from '@mui/material/Alert';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import CheckIcon from '@mui/icons-material/Check';
-import { Snackbar } from "@mui/material";
+import { Snackbar, Popover, ClickAwayListener } from "@mui/material";
+import Alert from '@mui/material/Alert';
 import jsPDF from "jspdf";
 
 function Genarator(props) {
@@ -26,8 +29,16 @@ function Genarator(props) {
   const [qrColor, setQrColor] = useState("#ffffff");
   const [save, setSave] = useState(false);
   const [alert, setAlert] = useState({ open: false, message: "", severity: "" });
+  const [loading, setLoading] = useState({
+    download: false,
+    save: false,
+    share: false,
+    pdf: false
+  });
+  const [colorPickerOpen, setColorPickerOpen] = useState(false);
+  const [colorPickerAnchor, setColorPickerAnchor] = useState(null);
   
-  // Enhanced color palette with better selection
+  // Enhanced color palette with comprehensive selection
   const customColors = useMemo(() => [
     { color: "#ffffff", name: "White" },
     { color: "#f8f9fa", name: "Light Gray" },
@@ -37,7 +48,13 @@ function Genarator(props) {
     { color: "#fce4ec", name: "Light Pink" },
     { color: "#f3e5f5", name: "Light Purple" },
     { color: "#ffebee", name: "Light Red" },
-    { color: "#fffde7", name: "Light Yellow" }
+    { color: "#fffde7", name: "Light Yellow" },
+    { color: "#e0f7fa", name: "Light Cyan" },
+    { color: "#f1f8e9", name: "Mint Green" },
+    { color: "#f9fbe7", name: "Pale Yellow" },
+    { color: "#efebe9", name: "Beige" },
+    { color: "#eceff1", name: "Slate Gray" },
+    { color: "#e8eaf6", name: "Lavender" }
   ], []);
 
   // Enhanced size options
@@ -82,6 +99,22 @@ function Genarator(props) {
 
   const handleClose = () => {
     setAlert({ ...alert, open: false });
+  };
+  
+  const handleColorPickerOpen = (event) => {
+    setColorPickerAnchor(event.currentTarget);
+    setColorPickerOpen(true);
+  };
+  
+  const handleColorPickerClose = () => {
+    setColorPickerOpen(false);
+    setColorPickerAnchor(null);
+  };
+  
+  const handleColorSelect = (color) => {
+    setQrColor(color);
+    setSave(false);
+    handleColorPickerClose();
   };
 
   const fetchQrCodes = async (userId) => {
@@ -132,6 +165,9 @@ function Genarator(props) {
     }
 
     try {
+      // Set loading state
+      setLoading(prev => ({ ...prev, download: true }));
+      
       // Make sure the element is ready to be captured
       if (!downloadQrRef.current) return;
       
@@ -183,6 +219,9 @@ function Genarator(props) {
         downloadQrRef.current.style.opacity = 0;
         downloadQrRef.current.style.zIndex = -1000;
       }
+    } finally {
+      // Reset loading state
+      setLoading(prev => ({ ...prev, download: false }));
     }
   };
 
@@ -215,6 +254,9 @@ function Genarator(props) {
     }
 
     try {
+      // Set loading state
+      setLoading(prev => ({ ...prev, save: true }));
+      
       // Make sure the element is ready to be captured
       if (!downloadQrRef.current) return;
       
@@ -272,6 +314,9 @@ function Genarator(props) {
         downloadQrRef.current.style.opacity = 0;
         downloadQrRef.current.style.zIndex = -1000;
       }
+    } finally {
+      // Reset loading state
+      setLoading(prev => ({ ...prev, save: false }));
     }
   };
 
@@ -286,6 +331,9 @@ function Genarator(props) {
     }
 
     try {
+      // Set loading state
+      setLoading(prev => ({ ...prev, share: true }));
+      
       // Make sure the element is ready to be captured
       if (!downloadQrRef.current) return;
       
@@ -347,6 +395,9 @@ function Genarator(props) {
         downloadQrRef.current.style.opacity = 0;
         downloadQrRef.current.style.zIndex = -1000;
       }
+    } finally {
+      // Reset loading state
+      setLoading(prev => ({ ...prev, share: false }));
     }
   };
 
@@ -361,6 +412,9 @@ function Genarator(props) {
     }
 
     try {
+      // Set loading state
+      setLoading(prev => ({ ...prev, pdf: true }));
+      
       // Make sure the element is ready to be captured
       if (!downloadQrRef.current) return;
       
@@ -428,6 +482,9 @@ function Genarator(props) {
         downloadQrRef.current.style.opacity = 0;
         downloadQrRef.current.style.zIndex = -1000;
       }
+    } finally {
+      // Reset loading state
+      setLoading(prev => ({ ...prev, pdf: false }));
     }
   };
 
@@ -500,20 +557,50 @@ function Genarator(props) {
                 <PaletteIcon fontSize="small" />
                 Background Color
               </label>
-              <div className="color-palette">
-                {customColors.map(({ color, name }) => (
-                  <button
-                    key={color}
-                    className={`color-button ${qrColor === color ? 'active' : ''}`}
-                    style={{ backgroundColor: color }}
-                    onClick={() => {
-                      setQrColor(color);
-                      setSave(false);
-                    }}
-                    title={name}
-                    aria-label={`Select ${name} background`}
-                  />
-                ))}
+              <div className="color-selector">
+                <div className="color-preview" onClick={handleColorPickerOpen}>
+                  <div className="color-swatch-preview" style={{ backgroundColor: qrColor }}></div>
+                  <span className="color-name">
+                    {customColors.find(c => c.color === qrColor)?.name || "Custom"}
+                  </span>
+                  <ArrowDropDownIcon className="color-dropdown-arrow" />
+                </div>
+                
+                <Popover
+                  open={colorPickerOpen}
+                  anchorEl={colorPickerAnchor}
+                  onClose={handleColorPickerClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  className="color-popover"
+                >
+                  <ClickAwayListener onClickAway={handleColorPickerClose}>
+                    <div className="color-grid">
+                      {customColors.map(({ color, name }) => (
+                        <div
+                          key={color}
+                          className={`color-grid-item ${qrColor === color ? 'active' : ''}`}
+                          onClick={() => handleColorSelect(color)}
+                          title={name}
+                        >
+                          <div 
+                            className="color-swatch" 
+                            style={{ backgroundColor: color }}
+                          >
+                            {qrColor === color && <CheckIcon className="color-check-icon" />}
+                          </div>
+                          <span className="color-grid-label">{name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </ClickAwayListener>
+                </Popover>
               </div>
             </div>
           </section>
@@ -587,33 +674,77 @@ function Genarator(props) {
 
           {/* Action Buttons */}
           {value && isGenerated && (
-            <section className="action-buttons">
-              <button onClick={downloadQRCode} className="action-button">
-                <DownloadIcon />
-                Download PNG
-              </button>
+            <section className="action-buttons-container">
+              <h3 className="actions-title">Save & Share Your QR Code</h3>
               
-              {props.user && (
-                <>
-                  <button 
-                    onClick={saveQrCode} 
-                    className={`action-button save-btn ${save ? 'saved' : ''}`}
-                  >
-                    {save ? <SaveIcon /> : <SaveOutlinedIcon />}
-                    {save ? 'Saved' : 'Save'}
-                  </button>
-                  
-                  <button onClick={shareQrCode} className="action-button">
-                    <ShareIcon />
-                    Share
-                  </button>
-                  
-                  <button onClick={downloadAsPdf} className="action-button">
-                    <PictureAsPdfIcon />
-                    Download PDF
-                  </button>
-                </>
-              )}
+              <div className="action-buttons">
+                <button 
+                  onClick={downloadQRCode} 
+                  className={`action-button download-btn ${loading.download ? 'loading' : ''}`}
+                  title="Download as PNG image"
+                  disabled={loading.download}
+                >
+                  <div className="action-icon">
+                    {loading.download ? <div className="button-spinner"></div> : <DownloadIcon />}
+                  </div>
+                  <div className="action-text">
+                    <span className="action-title">{loading.download ? 'Downloading...' : 'Download'}</span>
+                    <span className="action-subtitle">Save as PNG</span>
+                  </div>
+                </button>
+                
+                {props.user && (
+                  <>
+                    <button 
+                      onClick={saveQrCode} 
+                      className={`action-button save-btn ${save ? 'saved' : ''} ${loading.save ? 'loading' : ''}`}
+                      title="Save to your account"
+                      disabled={loading.save || save}
+                    >
+                      <div className="action-icon">
+                        {loading.save ? <div className="button-spinner"></div> : 
+                         save ? <SaveIcon /> : <SaveOutlinedIcon />}
+                      </div>
+                      <div className="action-text">
+                        <span className="action-title">
+                          {loading.save ? 'Saving...' : save ? 'Saved' : 'Save'}
+                        </span>
+                        <span className="action-subtitle">To your account</span>
+                      </div>
+                    </button>
+                    
+                    <button 
+                      onClick={shareQrCode} 
+                      className={`action-button share-btn ${loading.share ? 'loading' : ''}`}
+                      title="Share with others"
+                      disabled={loading.share}
+                    >
+                      <div className="action-icon">
+                        {loading.share ? <div className="button-spinner"></div> : <ShareIcon />}
+                      </div>
+                      <div className="action-text">
+                        <span className="action-title">{loading.share ? 'Sharing...' : 'Share'}</span>
+                        <span className="action-subtitle">With others</span>
+                      </div>
+                    </button>
+                    
+                    <button 
+                      onClick={downloadAsPdf} 
+                      className={`action-button pdf-btn ${loading.pdf ? 'loading' : ''}`}
+                      title="Download as PDF document"
+                      disabled={loading.pdf}
+                    >
+                      <div className="action-icon">
+                        {loading.pdf ? <div className="button-spinner"></div> : <PictureAsPdfIcon />}
+                      </div>
+                      <div className="action-text">
+                        <span className="action-title">{loading.pdf ? 'Creating PDF...' : 'PDF'}</span>
+                        <span className="action-subtitle">Document format</span>
+                      </div>
+                    </button>
+                  </>
+                )}
+              </div>
             </section>
           )}
 
