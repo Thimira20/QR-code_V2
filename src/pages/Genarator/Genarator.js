@@ -38,8 +38,9 @@ function Genarator(props) {
   const [colorPickerOpen, setColorPickerOpen] = useState(false);
   const [colorPickerAnchor, setColorPickerAnchor] = useState(null);
   
-  // Enhanced color palette with comprehensive selection
+  // Expanded color palette with light, vibrant, and deep colors
   const customColors = useMemo(() => [
+    // Light Colors
     { color: "#ffffff", name: "White" },
     { color: "#f8f9fa", name: "Light Gray" },
     { color: "#e3f2fd", name: "Light Blue" },
@@ -47,14 +48,37 @@ function Genarator(props) {
     { color: "#fff3e0", name: "Light Orange" },
     { color: "#fce4ec", name: "Light Pink" },
     { color: "#f3e5f5", name: "Light Purple" },
-    { color: "#ffebee", name: "Light Red" },
-    { color: "#fffde7", name: "Light Yellow" },
-    { color: "#e0f7fa", name: "Light Cyan" },
-    { color: "#f1f8e9", name: "Mint Green" },
-    { color: "#f9fbe7", name: "Pale Yellow" },
-    { color: "#efebe9", name: "Beige" },
-    { color: "#eceff1", name: "Slate Gray" },
-    { color: "#e8eaf6", name: "Lavender" }
+    
+    // Vibrant Colors
+    { color: "#2196f3", name: "Vibrant Blue" },
+    { color: "#4caf50", name: "Vibrant Green" },
+    { color: "#ff9800", name: "Vibrant Orange" },
+    { color: "#e91e63", name: "Vibrant Pink" },
+    { color: "#9c27b0", name: "Vibrant Purple" },
+    { color: "#f44336", name: "Vibrant Red" },
+    { color: "#ffeb3b", name: "Vibrant Yellow" },
+    
+    // Deep Colors
+    { color: "#0d47a1", name: "Deep Blue" },
+    { color: "#1b5e20", name: "Deep Green" },
+    { color: "#e65100", name: "Deep Orange" },
+    { color: "#880e4f", name: "Deep Pink" },
+    { color: "#4a148c", name: "Deep Purple" },
+    { color: "#b71c1c", name: "Deep Red" },
+    { color: "#f57f17", name: "Deep Yellow" },
+    
+    // Special Colors
+    { color: "#00bcd4", name: "Cyan" },
+    { color: "#009688", name: "Teal" },
+    { color: "#cddc39", name: "Lime" },
+    { color: "#ff5722", name: "Deep Orange" },
+    { color: "#607d8b", name: "Blue Gray" },
+    { color: "#795548", name: "Brown" },
+    { color: "#9e9e9e", name: "Gray" },
+    
+    // Additional Colors
+    { color: "#3f51b5", name: "Indigo" },
+    { color: "#673ab7", name: "Deep Purple" }
   ], []);
 
   // Enhanced size options
@@ -581,23 +605,99 @@ function Genarator(props) {
                   className="color-popover"
                 >
                   <ClickAwayListener onClickAway={handleColorPickerClose}>
-                    <div className="color-grid">
-                      {customColors.map(({ color, name }) => (
-                        <div
-                          key={color}
-                          className={`color-grid-item ${qrColor === color ? 'active' : ''}`}
-                          onClick={() => handleColorSelect(color)}
-                          title={name}
-                        >
-                          <div 
-                            className="color-swatch" 
-                            style={{ backgroundColor: color }}
-                          >
-                            {qrColor === color && <CheckIcon className="color-check-icon" />}
-                          </div>
-                          <span className="color-grid-label">{name}</span>
+                    <div className="color-picker-container">
+                      <div className="color-picker-header">
+                        <h4>Choose Background Color</h4>
+                        <span className="color-picker-subtitle">Select from our color palette</span>
+                      </div>
+                      
+                      <div className="color-section">
+                        <div className="color-section-header">Light Colors</div>
+                        <div className="color-grid">
+                          {customColors.slice(0, 7).map(({ color, name }) => (
+                            <div
+                              key={color}
+                              className={`color-grid-item ${qrColor === color ? 'active' : ''}`}
+                              onClick={() => handleColorSelect(color)}
+                              title={name}
+                            >
+                              <div 
+                                className="color-swatch" 
+                                style={{ backgroundColor: color }}
+                              >
+                                {qrColor === color && <CheckIcon className="color-check-icon" />}
+                              </div>
+                              <span className="color-grid-label">{name}</span>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
+                      
+                      <div className="color-section">
+                        <div className="color-section-header">Vibrant Colors</div>
+                        <div className="color-grid">
+                          {customColors.slice(7, 14).map(({ color, name }) => (
+                            <div
+                              key={color}
+                              className={`color-grid-item ${qrColor === color ? 'active' : ''}`}
+                              onClick={() => handleColorSelect(color)}
+                              title={name}
+                            >
+                              <div 
+                                className="color-swatch" 
+                                style={{ backgroundColor: color }}
+                              >
+                                {qrColor === color && <CheckIcon className="color-check-icon" />}
+                              </div>
+                              <span className="color-grid-label">{name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="color-section">
+                        <div className="color-section-header">Deep Colors</div>
+                        <div className="color-grid">
+                          {customColors.slice(14, 21).map(({ color, name }) => (
+                            <div
+                              key={color}
+                              className={`color-grid-item ${qrColor === color ? 'active' : ''}`}
+                              onClick={() => handleColorSelect(color)}
+                              title={name}
+                            >
+                              <div 
+                                className="color-swatch" 
+                                style={{ backgroundColor: color }}
+                              >
+                                {qrColor === color && <CheckIcon className="color-check-icon" />}
+                              </div>
+                              <span className="color-grid-label">{name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="color-section">
+                        <div className="color-section-header">Additional Colors</div>
+                        <div className="color-grid">
+                          {customColors.slice(21).map(({ color, name }) => (
+                            <div
+                              key={color}
+                              className={`color-grid-item ${qrColor === color ? 'active' : ''}`}
+                              onClick={() => handleColorSelect(color)}
+                              title={name}
+                            >
+                              <div 
+                                className="color-swatch" 
+                                style={{ backgroundColor: color }}
+                              >
+                                {qrColor === color && <CheckIcon className="color-check-icon" />}
+                              </div>
+                              <span className="color-grid-label">{name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </ClickAwayListener>
                 </Popover>
